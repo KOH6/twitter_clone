@@ -7,6 +7,16 @@
   </div>
 
   <div class="field">
+    <%= f.label :phone %><br />
+    <%= f.text_field :phone, autofocus: true, autocomplete: "phone" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :birthdate %><br />
+    <%= f.date_field :birthdate, autofocus: true, autocomplete: "birthdate" %>
+  </div>
+
+  <div class="field">
     <%= f.label :password %><br />
     <%= f.password_field :password, autocomplete: "current-password" %>
   </div>
