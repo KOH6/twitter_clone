@@ -6,4 +6,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :confirmable, :lockable, :timeoutable, :trackable, :omniauthable
+
+  with_options presence: true do
+    validates :phone
+    validates :birthdate
+  end
 end
