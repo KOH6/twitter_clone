@@ -2,10 +2,10 @@
 
 Rails.application.routes.draw do
   # 開発環境でブラウザ上でメール受信できるようにする
-  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+  mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 
   resources :posts, only: %i[index]
   devise_for :users
 
-  root "posts#index"
+  root 'posts#index'
 end

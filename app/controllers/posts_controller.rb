@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 class PostsController < ApplicationController
   def index
-    if user_signed_in?
-      @user = current_user
-    else
-      @user = User.new
-    end
+    @user = if user_signed_in?
+              current_user
+            else
+              User.new
+            end
   end
 end
