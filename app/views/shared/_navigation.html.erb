@@ -1,9 +1,13 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
   <div class="container px-4 px-lg-5">
-    <%= link_to "X", posts_path, class: "navbar-brand fw-bolder" %>
+    <%= link_to "Twitterクローン", posts_path, class: "navbar-brand fw-bolder" %>
     <div class="justify-content-beetween">
-      <%= link_to "ログイン", new_user_session_path, class: "btn btn-primary mt-auto" %>
-      <%= link_to "新規登録", new_user_registration_path, class: "btn btn-primary mt-auto" %>
-    </div>
+      <% if user_signed_in? %>
+        <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete }, class: "btn btn-primary mt-auto" %>
+      <% else %>
+        <%= link_to "ログイン", new_user_session_path, class: "btn btn-primary mt-auto" %>
+        <%= link_to "新規登録", new_user_registration_path, class: "btn btn-primary mt-auto" %>
+      <% end %>
+      </div>
   </div>
 </nav>
