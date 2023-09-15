@@ -11,6 +11,6 @@ class User < ApplicationRecord
     validates :phone
     validates :birthdate
     validates :name
-    validates :user_name
+    validates :user_name, uniqueness: true
   end
 end
