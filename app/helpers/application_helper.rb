@@ -8,7 +8,7 @@ module ApplicationHelper
   def convert_flash_class(key:)
     case key
     when 'notice' then 'success'
-    when 'error' then 'danger'
+    when 'alert' then 'danger'
     else key
     end
   end
