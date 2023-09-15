@@ -10,5 +10,8 @@ class User < ApplicationRecord
   with_options presence: true do
     validates :phone
     validates :birthdate
+    validates :name
+    validates :user_name
+    validates :introduction
   end
 end
