@@ -12,6 +12,5 @@ class User < ApplicationRecord
     validates :birthdate
     validates :name
     validates :user_name
-    validates :introduction
   end
 end
