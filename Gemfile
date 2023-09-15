@@ -60,6 +60,9 @@ gem 'omniauth'
 # ローカルでの環境変数設定用
 gem 'dotenv-rails'
 
+# deviseの日本語化
+gem 'devise-i18n'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mingw x64_mingw]
