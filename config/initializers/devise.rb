@@ -273,9 +273,8 @@ Devise.setup do |config|
   # up on your models and hooks.
   config.omniauth :github, ENV['GITHUB_ID'], ENV['GITHUB_SECRET'], scope: 'user,public_repo'
 
-  if Rails.env.production?
-    OmniAuth.config.full_host = "https://hc-koh-rails-twitter-577f7b460401.herokuapp.com"
-  end
+  # Heroku本番環境でのredirect_uri_mismatch対策
+  OmniAuth.config.full_host = 'https://hc-koh-rails-twitter-577f7b460401.herokuapp.com' if Rails.env.production?
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
