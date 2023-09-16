@@ -1,8 +1,11 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  # 開発環境でブラウザ上でメール受信できるようにする
+  mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  resources :posts, only: %i[index]
+  devise_for :users
+
+  root 'posts#index'
 end
