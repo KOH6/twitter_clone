@@ -9,7 +9,8 @@ module Users
     # You should also create an action method in this controller like this:
     def github
       @user = User.from_omniauth(request.env['omniauth.auth'])
-
+      @user.skip_confirmation!
+      @user.save!(context: :omniauth)
       if @user.persisted?
         sign_in_and_redirect @user, event: :authentication
         set_flash_message(:notice, :success, kind: 'Github') if is_navigational_format?

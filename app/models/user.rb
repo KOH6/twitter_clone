@@ -17,12 +17,11 @@ class User < ApplicationRecord
   end
 
   def self.from_omniauth(auth)
-    user = find_or_initialize_by(provider: auth.provider, uid: auth.uid) do |u|
+    find_or_initialize_by(provider: auth.provider, uid: auth.uid) do |u|
       u.email = auth.info.email
       u.password = Devise.friendly_token[0, 20]
       u.name = auth.info.name
       u.user_name = auth.info.nickname
     end
-    user.new_record? ? user.create(context: :omniauth) : user
   end
 end
