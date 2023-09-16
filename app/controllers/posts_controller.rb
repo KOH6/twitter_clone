@@ -2,10 +2,6 @@
 
 class PostsController < ApplicationController
   def index
-    @user = if user_signed_in?
-              current_user
-            else
-              User.new
-            end
+    @user = user_signed_in? ? current_user : User.new
   end
 end
