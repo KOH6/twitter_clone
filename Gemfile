@@ -55,10 +55,11 @@ gem 'bootsnap', require: false
 
 # devise
 gem 'devise'
-gem 'omniauth'
 
-# ローカルでの環境変数設定用
-gem 'dotenv-rails'
+# Omniauth
+gem 'omniauth'
+gem 'omniauth-github'
+gem 'omniauth-rails_csrf_protection'
 
 # deviseの日本語化
 gem 'devise-i18n'
@@ -72,6 +73,9 @@ group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails'
   gem 'rspec-rails'
+
+  # ローカルでの環境変数設定用
+  gem 'dotenv-rails'
 end
 
 group :development do
