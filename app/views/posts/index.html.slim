@@ -1,0 +1,10 @@
+= render 'shared/navigation'
+= render 'shared/flash'
+section.py-5.my-5
+  h1
+    | トップページ
+  p
+    | 名前：
+    = @user.name
+  p
+    = link_to "つぶやき", posts_path, data: { turbo: false }, class: "btn btn-primary mt-auto"
