@@ -15,7 +15,7 @@ USER_COUNT.times do |n|
 end
 
 50.times do |n|
-  post = Post.create!(
+  Post.create!(
     user_id: user_ids.sample,
     content: "テスト投稿#{n}です。"
   )
