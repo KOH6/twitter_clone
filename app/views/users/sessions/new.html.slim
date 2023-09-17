@@ -15,3 +15,9 @@ header.text-center.pt-5.mt-5
       = f.password_field :password, autocomplete: "current-password", class: "form-control"
     .actions.text-center.my-3
       = f.submit "ログイン", class: "btn btn-primary"
+  - if devise_mapping.omniauthable?
+    - resource_class.omniauth_providers.each do |provider|
+      div.text-center
+        p または
+        = button_to omniauth_authorize_path(resource_name, provider), data: { turbo: false }, class: "btn btn-dark mt-auto"
+          div.bi.bi-github.fs-6.mx-2 #{OmniAuth::Utils.camelize(provider)}でログイン

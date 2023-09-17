@@ -5,12 +5,23 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :confirmable, :lockable, :timeoutable, :trackable, :omniauthable
+         :confirmable, :lockable, :timeoutable, :trackable,
+         :omniauthable, omniauth_providers: %i[github]
 
   with_options presence: true do
-    validates :phone
-    validates :birthdate
     validates :name
     validates :user_name, uniqueness: true
+    # 電話番号と誕生日はGithubでの新規登録時には無効化する。
+    validates :phone, unless: -> { validation_context == :omniauth }
+    validates :birthdate, unless: -> { validation_context == :omniauth }
+  end
+
+  def self.from_omniauth(auth)
+    find_or_initialize_by(provider: auth.provider, uid: auth.uid) do |u|
+      u.email = auth.info.email
+      u.password = Devise.friendly_token[0, 20]
+      u.name = auth.info.name
+      u.user_name = auth.info.nickname
+    end
   end
 end
