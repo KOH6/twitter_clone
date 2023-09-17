@@ -6,5 +6,9 @@ section.py-5.my-5
   p
     | 名前：
     = @user.name
+  - @posts.each do |post|
+    p
+      | 投稿内容：
+      = post.content
   p
     = link_to "つぶやき", posts_path, data: { turbo: false }, class: "btn btn-primary mt-auto"

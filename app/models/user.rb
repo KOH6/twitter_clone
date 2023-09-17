@@ -8,6 +8,8 @@ class User < ApplicationRecord
          :confirmable, :lockable, :timeoutable, :trackable,
          :omniauthable, omniauth_providers: %i[github]
 
+  has_many :posts, dependent: :destroy
+
   with_options presence: true do
     validates :name
     validates :user_name, uniqueness: true
