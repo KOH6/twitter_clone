@@ -6,9 +6,35 @@ section.py-5.my-5
   p
     | 名前：
     = @user.name
+  h3
+    | ツイート全件
   - @posts.each do |post|
+    p
+      | 投稿者：
+      = post.user.name
     p
       | 投稿内容：
       = post.content
+    p
+      | 投稿日：
+      = post.created_at
+  h3
+    | 自分がフォローしている人一覧
+  - @followees.each do |followee|
+    p
+      | 名前：
+      = followee.name
+  h3
+    | 自分がフォローしている人の投稿一覧
+  - @followee_posts.each do |post|
+    p
+      | 投稿者：
+      = post.user.name
+    p
+      | 投稿内容：
+      = post.content
+    p
+      | 投稿日：
+      = post.created_at
   p
     = link_to "つぶやき", posts_path, data: { turbo: false }, class: "btn btn-primary mt-auto"
