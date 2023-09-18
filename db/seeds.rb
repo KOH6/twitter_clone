@@ -17,7 +17,7 @@ end
 50.times do |n|
   Post.create!(
     user_id: user_ids.sample,
-    content: "テスト投稿#{n}です。"
+    content: "テスト投稿#{n}です。<br>テスト投稿#{n}です。<br>テスト投稿#{n}です。"
   )
 end
 
