@@ -3,10 +3,10 @@
 class PostsController < ApplicationController
   def index
     @user = user_signed_in? ? current_user : User.new
-    @posts = Post.latest.page(params[:posts_page])
+    @posts = Post.latest.page(params[:posts_page]).per(10)
     # 自分がフォローしている人
     @followees = @user.followees
     followee_ids = @followees.map(&:id)
-    @followee_posts = Post.followee_posts(followee_ids:).page(params[:followee_page])
+    @followee_posts = Post.followee_posts(followee_ids:).page(params[:followee_page]).per(10)
   end
 end

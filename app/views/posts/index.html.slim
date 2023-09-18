@@ -14,8 +14,8 @@ section.container-fluid.row.flex-nowrap
           |  フォロー中
     #pills-tabContent.tab-content
       #pills-home.tab-pane.fade.show.active
-        = render 'posts', :posts => @posts
         = paginate @posts, :param_name => 'posts_page'
+        = render 'posts', :posts => @posts
       #pills-profile.tab-pane.fade
-        = render 'posts', :posts => @followee_posts
         = paginate @followee_posts, :param_name => 'followee_page'
+        = render 'posts', :posts => @followee_posts
