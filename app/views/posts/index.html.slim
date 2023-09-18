@@ -1,7 +1,8 @@
 .container-fluid
   = render 'shared/navigation'
   .row.flex-nowrap
-    = render 'shared/sidebar', :user => @user
+    - if user_signed_in?
+      = render 'shared/sidebar', :user => @user
     .col
       = render 'shared/flash'
       h3.fw-bold.my-3
