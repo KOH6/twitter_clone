@@ -2,12 +2,4 @@ h3
   | ツイート件数
   = posts.size
 - posts.each do |post|
-  p
-    | 投稿者：
-    = post.user.name
-  p
-    | 投稿内容：
-    = post.content
-  p
-    | 投稿日：
-    = post.created_at
+  = render post
