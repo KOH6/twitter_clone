@@ -1,6 +1,6 @@
 = render 'shared/navigation'
 section.container-fluid.row.flex-nowrap
-  = render 'shared/sidebar'
+  = render 'shared/sidebar', :user => @user
   .col.py-3
     = render 'shared/flash'
     h1
@@ -38,5 +38,4 @@ section.container-fluid.row.flex-nowrap
       p
         | 投稿日：
         = post.created_at
-    p
-      = link_to "つぶやき", posts_path, data: { turbo: false }, class: "btn btn-primary mt-auto"
+

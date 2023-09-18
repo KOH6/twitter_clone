@@ -1,57 +1,50 @@
-.col-auto.col-md-3.col-xl-2.px-sm-2.px-0.text-dark
+col-auto.col-md-4.col-xl-2.px-sm-2.px-0.text-dark.border.border-top-0
   .d-flex.flex-column.align-items-center.align-items-sm-start.px-3.pt-2.min-vh-100
-    a.d-flex.align-items-center.pb-3.mb-md-0.me-md-auto.text-dark.text-decoration-none[href="/"]
-      span.fs-5.d-none.d-sm-inline
-        | Menu
     ul.nav.flex-column.mb-0.align-items-center.align-items-sm-start
       li.nav-item
-        a.nav-link.align-middle.text-dark.px-0[href="#"]
-          i.fs-4.bi-house
+        a.nav-link.align-middle.text-dark.px-0.d-flex.align-items-center.fw-bold[href="#"]
+          i.fs-4.bi-house.mx-2
           span.ms-1.d-none.d-sm-inline
-            | Home
+            | ホーム
       li
-        a.nav-link.px-0.text-dark.align-middle[href="#submenu1" data-bs-toggle="collapse"]
-          i.fs-4.bi-speedometer2
+        a.nav-link.align-middle.text-dark.px-0.d-flex.align-items-center.fw-bold[href="#"]
+          i.fs-4.bi-search.mx-2
           span.ms-1.d-none.d-sm-inline
-            | Dashboard
+            | 話題を検索
       li
-        a.nav-link.px-0.text-dark.align-middle[href="#"]
-          i.fs-4.bi-table
+        a.nav-link.align-middle.text-dark.px-0.d-flex.align-items-center.fw-bold[href="#"]
+          i.fs-4.bi-bell.mx-2
           span.ms-1.d-none.d-sm-inline
-            | Orders
+            | 通知
       li
-        a.nav-link.px-0.text-dark.align-middle[href="#submenu2" data-bs-toggle="collapse"]
-          i.fs-4.bi-bootstrap
+        a.nav-link.align-middle.text-dark.px-0.d-flex.align-items-center.fw-bold[href="#"]
+          i.fs-4.bi-envelope.mx-2
           span.ms-1.d-none.d-sm-inline
-            | Bootstrap
+            | メッセージ
       li
-        a.nav-link.px-0.text-dark.align-middle[href="#submenu3" data-bs-toggle="collapse"]
-          i.fs-4.bi-grid
+        a.nav-link.align-middle.text-dark.px-0.d-flex.align-items-center.fw-bold[href="#"]
+          i.fs-4.bi-bookmark.mx-2
           span.ms-1.d-none.d-sm-inline
-            | Products
+            | ブックマーク
       li
-        a.nav-link.px-0.text-dark.align-middle[href="#"]
-          i.fs-4.bi-people
+        a.nav-link.align-middle.text-dark.px-0.d-flex.align-items-center.fw-bold[href="#"]
+          i.fs-4.bi-twitter.mx-2
           span.ms-1.d-none.d-sm-inline
-            | Customers
+            | Twitter Blue
+      li
+        a.nav-link.align-middle.text-dark.px-0.d-flex.align-items-center.fw-bold[href="#"]
+          i.fs-4.bi-person.mx-2
+          span.ms-1.d-none.d-sm-inline
+            | プロフィール
+      li
+        a.nav-link.align-middle.text-dark.px-0.d-flex.align-items-center.fw-bold[href="#"]
+          i.fs-4.bi-three-dots.mx-2
+          span.ms-1.d-none.d-sm-inline
+            | もっと見る
     hr
-    .dropdown.pb-4
-      a.d-flex.text-dark.align-items-center.text-decoration-none.dropdown-toggle[href="#" data-bs-toggle="dropdown" aria-expanded="false"]
-        img.rounded-circle[src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30"]
-        span.d-none.d-sm-inline.mx-1
-          | loser
-      ul.dropdown-menu.dropdown-menu-dark.text-small.shadow[aria-labelledby="dropdownUser1"]
-        li
-          a.dropdown-item[href="#"]
-            | New project...
-        li
-          a.dropdown-item[href="#"]
-            | Settings
-        li
-          a.dropdown-item[href="#"]
-            | Profile
-        li
-          hr.dropdown-divider
-        li
-          a.dropdown-item[href="#"]
-            | Sign out
+    p.mx-auto
+      = link_to "ツイートする", posts_path, data: { turbo: false }, class: "btn btn-primary px-4 text-white fw-bold"
+    hr
+    a.d-flex.text-dark.align-items-center.text-decoration-none[href="#"]
+      span.d-none.d-sm-inline.mx-1.fw-bold
+        = user.name
