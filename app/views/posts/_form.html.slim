@@ -1,4 +1,4 @@
-= form_with url: posts_path, model: user, locale: true do |f|
+= form_with url: posts_path, model: Post.new , locale: true do |f|
   .card.mb-3
     .card-body
       = f.text_area :content, class: 'form-control', placeholder: 'いまどうしてる？', rows: 5
