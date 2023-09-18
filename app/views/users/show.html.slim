@@ -1,8 +1,26 @@
 .container-fluid
   = render 'shared/navigation'
   .row.flex-nowrap
-    = render 'shared/sidebar', :user => @user
+    = render 'shared/sidebar', :user => current_user
     .col
       = render 'shared/flash'
       h3.fw-bold.my-3
-        | ホーム
+        | プロフィール
+      ul#pills-tab.nav.nav-pills.w-100.nav-justified.border-bottom.mb-3
+        li.nav-item
+          button#pills-home-tab.fw-bold.nav-link.active[data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true"]
+            |  ツイート
+        li.nav-item
+          button#pills-profile-tab.fw-bold.nav-link[data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false"]
+            |  いいね
+        li.nav-item
+          button#pills-profile-tab.fw-bold.nav-link[data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false"]
+            |  リツイート
+        li.nav-item
+          button#pills-profile-tab.fw-bold.nav-link[data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false"]
+            |  コメント
+      #pills-tabContent.tab-content
+        #pills-home.tab-pane.fade.show.active
+          = paginate @posts, :param_name => 'posts_page'
+          - @posts.each do |post|
+            = render post
