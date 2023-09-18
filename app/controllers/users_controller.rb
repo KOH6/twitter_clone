@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def show
-    @user = user_signed_in? ? current_user : User.new
+    @user = User.find(params[:id])
     @posts = @user.posts.latest.page(params[:posts_page]).per(10)
   end
 end
