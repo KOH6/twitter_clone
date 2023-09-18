@@ -8,11 +8,7 @@ class Post < ApplicationRecord
   scope :latest, -> { order(created_at: :desc) }
   scope :followee_posts, ->(followee_ids:) { where(user_id: followee_ids).order(created_at: :desc) }
 
-  def user_name
-    user.name
-  end
+  delegate :name, to: :user, prefix: true
 
-  def user_user_name
-    user.user_name
-  end
+  delegate :user_name, to: :user, prefix: true
 end
