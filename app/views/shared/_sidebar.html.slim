@@ -1,7 +1,7 @@
-col-auto.col-md-1.col-xl-3.px-sm-2.px-0.text-dark.border.border-top-0
-  .d-flex.flex-column.align-items-center.align-items-sm-start.px-5.pt-2.min-vh-100
-    ul.nav.flex-column.mb-0.align-items-center.align-items-sm-start
-      li.nav-item
+.col-3.px-sm-2.px-0.text-dark.border.border-top-0
+  .d-flex.flex-column.align-items-center.align-items-sm-start.px-1.pt-2.min-vh-100
+    ul.nav.nav-pills.flex-column.mb-0.align-items-center.align-items-sm-start
+      li
         a.nav-link.align-middle.text-dark.px-0.d-flex.align-items-center[href="#"]
           i.fs-4.bi-house.mx-2
           span.ms-1.d-none.d-sm-inline[style="font-size:1.5rem"]
@@ -42,8 +42,7 @@ col-auto.col-md-1.col-xl-3.px-sm-2.px-0.text-dark.border.border-top-0
           span.ms-1.d-none.d-sm-inline[style="font-size:1.5rem"]
             | もっと見る
     hr
-    p.mx-auto
-      = link_to "ツイートする", posts_path, data: { turbo: false }, class: "btn btn-primary px-4 text-white fw-bold"
+    = link_to "ツイートする", posts_path, data: { turbo: false }, class: "btn btn-primary text-white fw-bold mx-auto"
     hr
     a.d-flex.text-dark.align-items-center.text-decoration-none[href="#"]
       span.d-none.d-sm-inline.mx-1.fw-bold
