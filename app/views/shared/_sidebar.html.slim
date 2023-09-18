@@ -32,10 +32,7 @@
           span.ms-1.d-none.d-sm-inline[style="font-size:1.5rem"]
             | Twitter Blue
       li
-        a.nav-link.align-middle.text-dark.px-0.d-flex.align-items-center[href="#"]
-          i.fs-4.bi-person.mx-2
-          span.ms-1.d-none.d-sm-inline[style="font-size:1.5rem"]
-            | プロフィール
+        = link_to '<p class="bi bi-person fs-4 mx-2">  プロフィール</p>'.html_safe, posts_path, data: { turbo: false }, class: "text-decoration-none align-middle text-dark"
       li
         a.nav-link.align-middle.text-dark.px-0.d-flex.align-items-center[href="#"]
           i.fs-4.bi-three-dots.mx-2
