@@ -22,9 +22,6 @@ end
 end
 
 user_ids.each do |user_id|
-  p user_ids
-  followee_ids = user_ids.select {|id| id != user_id }.sample(3)
+  followee_ids = user_ids.reject { |id| id == user_id }.sample(3)
   followee_ids.each { |followee_id| Follow.create!(follower_id: user_id, followee_id:) }
 end
-
-
