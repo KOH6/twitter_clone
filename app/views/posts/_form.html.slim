@@ -1,0 +1,9 @@
+= form_with url: posts_path, model: user, locale: true do |f|
+  .card.mb-3
+    .card-body
+      = f.text_area :content, class: 'form-control', placeholder: 'いまどうしてる？', rows: 5
+      .d-flex.justify-content-between.mt-4
+        a.text-primary[href="#"]
+          i.fs-3.bi-image
+        p
+          = link_to "ツイートする", posts_path, data: { turbo: false }, class: "btn btn-primary px-4 text-white fw-bold"
