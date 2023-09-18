@@ -15,7 +15,9 @@ section.container-fluid.row.flex-nowrap
     #pills-tabContent.tab-content
       #pills-home.tab-pane.fade.show.active
         = paginate @posts, :param_name => 'posts_page'
-        = render 'posts', :posts => @posts
+        - @posts.each do |post|
+          = render post
       #pills-profile.tab-pane.fade
         = paginate @followee_posts, :param_name => 'followee_page'
-        = render 'posts', :posts => @followee_posts
+        - @followee_posts.each do |post|
+          = render post
