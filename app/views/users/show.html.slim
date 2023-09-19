@@ -10,8 +10,10 @@
         | #{@user.posts.size}件のツイート
       .card.border-0.container-fluid
         .profile-images
-          img.img-fluid.upper[src="https://i.imgur.com/Qtrsrk5.jpg"]
-          img.rounded-circle.profile[src="https://i.imgur.com/JgYD2nQ.jpg"]
+          - if @user.header_photo.attached?
+            = image_tag @user.header_photo, class: "upper"
+          - if @user.photo.attached?
+            = image_tag @user.photo, class: "rounded-circle profile"
         .mt-lg-5
         .profile-content
           .mt-5

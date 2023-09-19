@@ -9,6 +9,8 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: %i[github]
 
   has_many :posts, dependent: :destroy
+  has_one_attached :photo
+  has_one_attached :header_photo
 
   # 自分がフォローしているユーザたち
   has_many :following_status, class_name: 'Follow', foreign_key: :follower_id, dependent: :destroy,
@@ -35,5 +37,18 @@ class User < ApplicationRecord
       u.name = auth.info.name
       u.user_name = auth.info.nickname
     end
+  end
+
+  before_save do
+    set_dummy_photo(self)
+  end
+
+  private
+
+  def set_dummy_photo(user)
+    user.photo.attach(io: File.open(Rails.root.join("app/assets/images/dummy_photo.jpg")),
+                      filename: "dummy_photo.jpg") unless user.photo.attached?
+    user.header_photo.attach(io: File.open(Rails.root.join("app/assets/images/dummy_header_photo.jpg")),
+                      filename: "dummy_header_photo.jpg") unless user.header_photo.attached?
   end
 end
