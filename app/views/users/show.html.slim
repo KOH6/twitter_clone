@@ -23,20 +23,24 @@
               = "\@#{@user.user_name}"
             span
               = @user.introduction
-            .container-grid.w-50.text-muted
+            .container-grid.w-75.text-muted
               .row
                 - if @user.place
                   .col
+                    i.bi-geo-alt.mx-2
                     = @user.place
                 - if @user.website
                   .col
+                    i.bi-link-45deg.mx-2
                     = @user.website
                 - if @user.birthdate
                   .col
+                    i.bi-balloon.mx-2
                     | 誕生日：
                     = l @user.birthdate
               .row
                 .col
+                  i.bi-calendar.mx-2
                   = l @user.created_at, format: :profile
                   | からTwitterを利用しています
               .row
