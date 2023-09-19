@@ -40,15 +40,19 @@ class User < ApplicationRecord
   end
 
   before_save do
-    set_dummy_photo(self)
+    attach_dummy_photo(self)
   end
 
   private
 
-  def set_dummy_photo(user)
-    user.photo.attach(io: File.open(Rails.root.join("app/assets/images/dummy_photo.jpg")),
-                      filename: "dummy_photo.jpg") unless user.photo.attached?
-    user.header_photo.attach(io: File.open(Rails.root.join("app/assets/images/dummy_header_photo.jpg")),
-                      filename: "dummy_header_photo.jpg") unless user.header_photo.attached?
+  def attach_dummy_photo(user)
+    unless user.photo.attached?
+      user.photo.attach(io: File.open(Rails.root.join('app/assets/images/dummy_photo.jpg')),
+                        filename: 'dummy_photo.jpg')
+    end
+    return if user.header_photo.attached?
+
+    user.header_photo.attach(io: File.open(Rails.root.join('app/assets/images/dummy_header_photo.jpg')),
+                             filename: 'dummy_header_photo.jpg')
   end
 end

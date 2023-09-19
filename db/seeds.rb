@@ -7,8 +7,16 @@ user_ids = []
 
 USER_COUNT.times do |n|
   count = n + 1
-  user = User.new(name: "名前#{count}", user_name: "ユーザ名#{count}", email: "example#{count}@example.com",
-                  password: "#{'a' * count}111111", introduction: "自己紹介文です", place: "東京都", website: "google.com", birthdate: "2000-01-01")
+  user = User.new(
+    name: "名前#{count}",
+    user_name: "ユーザ名#{count}",
+    email: "example#{count}@example.com",
+    password: "#{'a' * count}111111",
+    introduction: '自己紹介文です',
+    place: '東京都',
+    website: 'google.com',
+    birthdate: '2000-01-01'
+  )
   user.skip_confirmation!
   user.save!(context: :omniauth)
   user_ids << user.id
