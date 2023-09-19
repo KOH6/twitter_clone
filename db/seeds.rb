@@ -3,7 +3,9 @@
 User.destroy_all
 
 USER_COUNT = 5
+POST_COUNT = 50
 user_ids = []
+post_ids = []
 
 USER_COUNT.times do |n|
   count = n + 1
@@ -22,10 +24,17 @@ USER_COUNT.times do |n|
   user_ids << user.id
 end
 
-50.times do |n|
-  Post.create!(
+POST_COUNT.times do |n|
+  post = Post.create!(
     user_id: user_ids.sample,
     content: "テスト投稿#{n}です。<br>テスト投稿#{n}です。<br>テスト投稿#{n}です。"
+  )
+  post_ids << post.id
+
+  # いいね
+  Like.create!(
+    user_id: user_ids.reject { |id| id == post.user_id }.sample,
+    post_id: post.id
   )
 end
 
