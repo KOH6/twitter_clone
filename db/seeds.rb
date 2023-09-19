@@ -1,8 +1,27 @@
 # frozen_string_literal: true
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+
+User.destroy_all
+
+USER_COUNT = 5
+user_ids = []
+
+USER_COUNT.times do |n|
+  count = n + 1
+  user = User.new(name: "名前#{count}", user_name: "ユーザ名#{count}", email: "example#{count}@example.com",
+                  password: "#{'a' * count}111111")
+  user.skip_confirmation!
+  user.save!(context: :omniauth)
+  user_ids << user.id
+end
+
+50.times do |n|
+  Post.create!(
+    user_id: user_ids.sample,
+    content: "テスト投稿#{n}です。<br>テスト投稿#{n}です。<br>テスト投稿#{n}です。"
+  )
+end
+
+user_ids.each do |user_id|
+  followee_ids = user_ids.reject { |id| id == user_id }.sample(3)
+  followee_ids.each { |followee_id| Follow.create!(follower_id: user_id, followee_id:) }
+end
