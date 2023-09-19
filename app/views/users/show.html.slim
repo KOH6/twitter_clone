@@ -67,7 +67,7 @@
           - @posts.each do |post|
             = render post
         #pills-profile.tab-pane.fade
-          = paginate @like_posts, :param_name => 'like_page'
-          - @like_posts.each do |post|
+          = paginate @liking_posts, :param_name => 'like_page'
+          - @liking_posts.each do |post|
             = render post
 

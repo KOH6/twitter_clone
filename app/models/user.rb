@@ -22,9 +22,8 @@ class User < ApplicationRecord
                              inverse_of: 'followee'
   has_many :followers, through: :followed_status, source: :follower
 
-
   has_many :likes, dependent: :destroy
-  has_many :like_posts, through: :likes, source: :post
+  has_many :liking_posts, through: :likes, source: :post
 
   with_options presence: true do
     validates :name
