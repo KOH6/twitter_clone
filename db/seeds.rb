@@ -31,10 +31,18 @@ POST_COUNT.times do |n|
   )
   post_ids << post.id
 
-  # いいね
   Like.create!(
     user_id: user_ids.reject { |id| id == post.user_id }.sample,
     post_id: post.id
+  )
+  Repost.create!(
+    user_id: user_ids.reject { |id| id == post.user_id }.sample,
+    post_id: post.id
+  )
+  Comment.create!(
+    user_id: user_ids.reject { |id| id == post.user_id }.sample,
+    post_id: post.id,
+    content: "#{post.user_name}へ、コメント#{n}です"
   )
 end
 

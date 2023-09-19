@@ -25,6 +25,12 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :liking_posts, through: :likes, source: :post
 
+  has_many :reposts, dependent: :destroy
+  has_many :reposting_posts, through: :reposts, source: :post
+
+  has_many :comments, dependent: :destroy
+  has_many :commenting_posts, through: :comments, source: :post
+
   with_options presence: true do
     validates :name
     validates :user_name, uniqueness: true

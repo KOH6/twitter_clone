@@ -50,24 +50,32 @@
                   | follower数
       ul#pills-tab.nav.nav-pills.w-100.nav-justified.border-bottom.my-3
         li.nav-item
-          button#pills-home-tab.fw-bold.nav-link.active[data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true"]
+          button#pills-post-tab.fw-bold.nav-link.active[data-bs-toggle="pill" data-bs-target="#pills-post" type="button" role="tab" aria-controls="pills-post" aria-selected="true"]
             |  ツイート
         li.nav-item
-          button#pills-profile-tab.fw-bold.nav-link[data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false"]
+          button#pills-like-tab.fw-bold.nav-link[data-bs-toggle="pill" data-bs-target="#pills-like" type="button" role="tab" aria-controls="pills-like" aria-selected="false"]
             |  いいね
         li.nav-item
-          button#pills-profile-tab.fw-bold.nav-link[data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false"]
+          button#pills-repost-tab.fw-bold.nav-link[data-bs-toggle="pill" data-bs-target="#pills-repost" type="button" role="tab" aria-controls="pills-repost" aria-selected="false"]
             |  リツイート
         li.nav-item
-          button#pills-profile-tab.fw-bold.nav-link[data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false"]
+          button#pills-comment-tab.fw-bold.nav-link[data-bs-toggle="pill" data-bs-target="#pills-comment" type="button" role="tab" aria-controls="pills-comment" aria-selected="false"]
             |  コメント
       #pills-tabContent.tab-content
-        #pills-home.tab-pane.fade.show.active
+        #pills-post.tab-pane.fade.show.active
           = paginate @posts, :param_name => 'posts_page'
           - @posts.each do |post|
             = render post
-        #pills-profile.tab-pane.fade
+        #pills-like.tab-pane.fade
           = paginate @liking_posts, :param_name => 'like_page'
           - @liking_posts.each do |post|
+            = render post
+        #pills-repost.tab-pane.fade
+          = paginate @reposting_posts, :param_name => 'repost_page'
+          - @reposting_posts.each do |post|
+            = render post
+        #pills-comment.tab-pane.fade
+          = paginate @commenting_posts, :param_name => 'comment_page'
+          - @commenting_posts.each do |post|
             = render post
 
