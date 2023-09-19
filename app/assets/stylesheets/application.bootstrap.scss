@@ -7,3 +7,27 @@ $btn-border-radius: 1rem;
 .pagination {
   justify-content: center;
 }
+
+.profile-images {
+  position: relative;
+}
+
+.upper {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 200px;
+}
+
+.profile{
+  display: block;
+  position: absolute;
+  left: 3%;
+  top: 70%;
+  width: 15%;
+  height: auto;
+}
+
+.profile-content {
+  display: block;
+}

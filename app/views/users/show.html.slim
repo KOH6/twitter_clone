@@ -4,9 +4,41 @@
     = render 'shared/sidebar', :user => current_user
     .col
       = render 'shared/flash'
-      h3.fw-bold.my-3
-        | プロフィール
-      ul#pills-tab.nav.nav-pills.w-100.nav-justified.border-bottom.mb-3
+      h3.fw-bold.mt-2
+        = @user.name
+      .text-muted.my-1
+        | #{@user.posts.size}件のツイート
+      .card.border-0.container-fluid
+        .profile-images
+          img.img-fluid.upper[src="https://i.imgur.com/Qtrsrk5.jpg"]
+          img.rounded-circle.profile[src="https://i.imgur.com/JgYD2nQ.jpg"]
+        .mt-lg-5
+        .profile-content
+          .mt-5
+            h1.mb-0
+              = @user.name
+            span.text-muted.d-block.mb-2
+              = "\@#{@user.user_name}"
+            span
+              = @user.introduction
+            .container-grid.w-50.text-muted
+              .row
+                .col
+                  | 住所
+                .col
+                  | web
+                .col
+                  | 生年月日
+              .row
+                .col
+                  = l @user.created_at, format: :profile
+                  | からTwitterを利用しています
+              .row
+                .col
+                  | followee数
+                .col
+                  | follower数
+      ul#pills-tab.nav.nav-pills.w-100.nav-justified.border-bottom.my-3
         li.nav-item
           button#pills-home-tab.fw-bold.nav-link.active[data-bs-toggle="pill" data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home" aria-selected="true"]
             |  ツイート
