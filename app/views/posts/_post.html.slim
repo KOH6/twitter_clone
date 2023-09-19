@@ -1,12 +1,17 @@
 .card
-  .card-body
-    .d-flex.flex-row
-      p.card-title.fw-bold
-        = post.user_name
-      p.card-subtitle.text-muted.d-flex.align-items-center.mx-2
-        | @
-        = post.user_user_name
-        | ・
-        = l post.created_at
-    p.card-text
-      = post.content.html_safe
+  .card-body.container-grid
+    .row
+      .col-1
+        - if post.user.photo.attached?
+          = image_tag post.user.photo, class: "rounded-circle img-fluid", style: " max-width: 150%; height: auto;"
+      .col
+        .d-flex.flex-row
+          p.card-title.fw-bold
+            = post.user_name
+          p.card-subtitle.text-muted.d-flex.align-items-center.mx-2
+            | @
+            = post.user_user_name
+            | ・
+            = l post.created_at
+        p.card-text
+          = post.content.html_safe
