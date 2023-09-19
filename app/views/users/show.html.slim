@@ -43,11 +43,13 @@
                   i.bi-calendar.mx-2
                   = l @user.created_at, format: :profile
                   | からTwitterを利用しています
-              .row
+              .row.text-dark.fw-bold
                 .col
-                  | followee数
+                  = @user.followees.size
+                  | フォロー中
                 .col
-                  | follower数
+                  = @user.followers.size
+                  | フォロワー
       ul#pills-tab.nav.nav-pills.w-100.nav-justified.border-bottom.my-3
         li.nav-item
           button#pills-post-tab.fw-bold.nav-link.active[data-bs-toggle="pill" data-bs-target="#pills-post" type="button" role="tab" aria-controls="pills-post" aria-selected="true"]
