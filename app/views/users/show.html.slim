@@ -25,12 +25,16 @@
               = @user.introduction
             .container-grid.w-50.text-muted
               .row
-                .col
-                  | 住所
-                .col
-                  | web
-                .col
-                  | 生年月日
+                - if @user.place
+                  .col
+                    = @user.place
+                - if @user.website
+                  .col
+                    = @user.website
+                - if @user.birthdate
+                  .col
+                    | 誕生日：
+                    = l @user.birthdate
               .row
                 .col
                   = l @user.created_at, format: :profile

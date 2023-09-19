@@ -81,6 +81,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_19_104208) do
     t.string "name", null: false
     t.string "user_name", null: false
     t.text "introduction"
+    t.string "place"
+    t.string "website"
     t.string "phone"
     t.date "birthdate"
     t.datetime "created_at", null: false
