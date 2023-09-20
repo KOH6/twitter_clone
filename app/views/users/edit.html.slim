@@ -3,7 +3,6 @@
   .row.flex-nowrap
     = render 'shared/sidebar', :user => current_user
     .col
-      = render 'shared/flash'
       = render "users/shared/error_messages", resource: current_user
       h3.fw-bold.mt-2
         | プロフィールを編集

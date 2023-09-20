@@ -19,9 +19,9 @@ class UsersController < ApplicationController
   def update
     current_user.attributes = user_params
     if current_user.save(context: :not_new_form)
-      redirect_to request.referer, flash: { success: 'プロフィールを更新しました。' }
+      redirect_to user_path(current_user)
     else
-      redirect_to request.referer, flash: { danger: 'プロフィール更新失敗' }
+      render :edit
     end
   end
 

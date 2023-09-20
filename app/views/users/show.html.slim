@@ -22,20 +22,20 @@
               = @user.name
             span.text-muted.d-block.mb-2
               = "\@#{@user.user_name}"
-            - if @user.introduction
+            - if @user.introduction.present?
               span
                 = safe_join(@user.introduction.split("\n"),tag(:br))
             .container-grid.w-75.text-muted
               .row
-                - if @user.place
+                - if @user.place.present?
                   .col
                     i.bi-geo-alt.mx-2
                     = @user.place
-                - if @user.website
+                - if @user.website.present?
                   .col
                     i.bi-link-45deg.mx-2
                     = @user.website
-                - if @user.birthdate
+                - if @user.birthdate.present?
                   .col
                     i.bi-balloon.mx-2
                     | 誕生日：
