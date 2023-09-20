@@ -1,5 +1,5 @@
 - if user_signed_in?
-  = form_with url: posts_path, model: Post.new , locale: true do |f|
+  = form_with url: posts_path, model: post, data: { turbo: false }, locale: true do |f|
     .card.mb-3
       .card-body.container-grid
         .row
@@ -12,5 +12,6 @@
         .d-flex.justify-content-between.mt-4
           a.text-primary[href="#"]
             i.fs-3.bi-image
-          p
-            = link_to "ツイートする", posts_path, data: { turbo: false }, class: "btn btn-primary px-4 text-white fw-bold"
+          = f.file_field :images, multiple: true
+          button.btn.btn-primary.px-4.text-white.fw-bold[type="submit"]
+            | ツイートする
