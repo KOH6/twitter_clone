@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  before_save :attach_dummy_photo
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -48,20 +50,17 @@ class User < ApplicationRecord
     end
   end
 
-  before_save do
-    attach_dummy_photo(self)
-  end
-
   private
 
-  def attach_dummy_photo(user)
-    unless user.photo.attached?
-      user.photo.attach(io: File.open(Rails.root.join('app/assets/images/dummy_photo.jpg')),
-                        filename: 'dummy_photo.jpg')
+  def attach_dummy_photo
+    unless photo.attached?
+      photo.attach(io: File.open(Rails.root.join('app/assets/images/dummy_photo.jpg')),
+                   filename: 'dummy_photo.jpg')
     end
-    return if user.header_photo.attached?
 
-    user.header_photo.attach(io: File.open(Rails.root.join('app/assets/images/dummy_header_photo.jpg')),
-                             filename: 'dummy_header_photo.jpg')
+    return if header_photo.attached?
+
+    header_photo.attach(io: File.open(Rails.root.join('app/assets/images/dummy_header_photo.jpg')),
+                        filename: 'dummy_header_photo.jpg')
   end
 end
