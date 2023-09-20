@@ -3,7 +3,7 @@
     .row
       .col-1
         - if post.user.photo.attached?
-          = image_tag post.user.photo, class: "rounded-circle img-fluid", style: " max-width: 150%; height: auto;"
+          = image_tag post.user.photo, class: "rounded-circle img-fluid", style: " max-width: 100%; height: auto;"
       .col
         .d-flex.flex-row
           p.card-title.fw-bold

@@ -6,7 +6,7 @@
           .col-1
             - if user.photo.attached?
               = link_to user_path(current_user), data: { turbo: false }
-                = image_tag user.photo, class: "rounded-circle img-fluid", style: " max-width: 150%; height: auto;"
+                = image_tag user.photo, class: "rounded-circle img-fluid", style: " max-width: 100%; height: auto;"
           .col
             = f.text_area :content, class: 'form-control', placeholder: 'いまどうしてる？', rows: 5
         .d-flex.justify-content-between.mt-4
