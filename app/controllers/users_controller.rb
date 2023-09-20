@@ -10,9 +10,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-    return unless params[:id].to_i != current_user.id
+    return unless current_user != User.find(params[:id])
 
-    redirect_to root_path, flash: { danger: '自分以外のプロフィールは編集できません。' }
+    redirect_to user_path(current_user), flash: { danger: '自分以外のプロフィールは編集できません。' }
     nil
   end
 
