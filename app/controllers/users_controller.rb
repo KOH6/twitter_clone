@@ -17,7 +17,8 @@ class UsersController < ApplicationController
   end
 
   def update
-    if current_user.update(user_params)
+    current_user.attributes = user_params
+    if current_user.save(context: :omniauth)
       redirect_to request.referer, flash: { success: 'プロフィールを更新しました。' }
     else
       redirect_to request.referer, flash: { danger: 'プロフィール更新失敗' }
