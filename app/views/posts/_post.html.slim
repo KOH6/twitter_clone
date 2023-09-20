@@ -13,5 +13,10 @@
             = post.user_user_name
             | ・
             = l post.created_at
-        p.card-text
-          = post.content.html_safe
+        - if post.content?
+          span.card-text
+            = safe_join(post.content.split("\n"),tag(:br))
+        - if post.images.attached?
+          .d-flex.flex-row
+          - post.images.each do |image|
+            = image_tag image, class: "img-fluid", style: " max-width: 50%; height: auto;"
