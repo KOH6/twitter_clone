@@ -10,8 +10,8 @@
           .col
             = f.text_area :content, class: 'form-control', placeholder: 'いまどうしてる？', rows: 5
         .d-flex.justify-content-between.mt-4
-          a.text-primary[href="#"]
-            i.fs-3.bi-image
-          = f.file_field :images, multiple: true
+          = f.label :images
+            i.fs-3.bi-image.text-primary[style="cursor: pointer"]
+            = f.file_field :images, multiple: true, style: "display: none"
           button.btn.btn-primary.px-4.text-white.fw-bold[type="submit"]
             | ツイートする
