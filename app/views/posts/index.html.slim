@@ -14,7 +14,7 @@
           button#pills-profile-tab.fw-bold.nav-link[data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false"]
             |  フォロー中
       #pills-tabContent.tab-content
-        = render 'form'
+        = render 'form', :user => @user
         #pills-home.tab-pane.fade.show.active
           = paginate @posts, :param_name => 'posts_page'
           - @posts.each do |post|

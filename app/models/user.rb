@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  before_save :attach_dummy_photo
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -9,6 +11,8 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: %i[github]
 
   has_many :posts, dependent: :destroy
+  has_one_attached :photo
+  has_one_attached :header_photo
 
   # 自分がフォローしているユーザたち
   has_many :following_status, class_name: 'Follow', foreign_key: :follower_id, dependent: :destroy,
@@ -19,6 +23,15 @@ class User < ApplicationRecord
   has_many :followed_status, class_name: 'Follow', foreign_key: :followee_id, dependent: :destroy,
                              inverse_of: 'followee'
   has_many :followers, through: :followed_status, source: :follower
+
+  has_many :likes, dependent: :destroy
+  has_many :liking_posts, through: :likes, source: :post
+
+  has_many :reposts, dependent: :destroy
+  has_many :reposting_posts, through: :reposts, source: :post
+
+  has_many :comments, dependent: :destroy
+  has_many :commenting_posts, through: :comments, source: :post
 
   with_options presence: true do
     validates :name
@@ -35,5 +48,19 @@ class User < ApplicationRecord
       u.name = auth.info.name
       u.user_name = auth.info.nickname
     end
+  end
+
+  private
+
+  def attach_dummy_photo
+    unless photo.attached?
+      photo.attach(io: File.open(Rails.root.join('app/assets/images/dummy_photo.jpg')),
+                   filename: 'dummy_photo.jpg')
+    end
+
+    return if header_photo.attached?
+
+    header_photo.attach(io: File.open(Rails.root.join('app/assets/images/dummy_header_photo.jpg')),
+                        filename: 'dummy_header_photo.jpg')
   end
 end
