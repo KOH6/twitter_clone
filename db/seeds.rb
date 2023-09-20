@@ -20,7 +20,7 @@ USER_COUNT.times do |n|
     birthdate: '2000-01-01'
   )
   user.skip_confirmation!
-  user.save!(context: :omniauth)
+  user.save!(context: :not_new_form)
   user_ids << user.id
 end
 

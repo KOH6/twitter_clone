@@ -37,8 +37,8 @@ class User < ApplicationRecord
     validates :name
     validates :user_name, uniqueness: true
     # 電話番号と誕生日はGithubでの新規登録時には無効化する。
-    validates :phone, unless: -> { validation_context == :omniauth }
-    validates :birthdate, unless: -> { validation_context == :omniauth }
+    validates :phone, unless: -> { validation_context == :not_new_form }
+    validates :birthdate, unless: -> { validation_context == :not_new_form }
   end
 
   def self.from_omniauth(auth)

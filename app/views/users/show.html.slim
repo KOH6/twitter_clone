@@ -22,8 +22,9 @@
               = @user.name
             span.text-muted.d-block.mb-2
               = "\@#{@user.user_name}"
-            span
-              = safe_join(@user.introduction.split("\n"),tag(:br))
+            - if @user.introduction
+              span
+                = safe_join(@user.introduction.split("\n"),tag(:br))
             .container-grid.w-75.text-muted
               .row
                 - if @user.place
