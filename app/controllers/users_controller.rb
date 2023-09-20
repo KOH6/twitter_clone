@@ -8,4 +8,27 @@ class UsersController < ApplicationController
     @reposting_posts = @user.reposting_posts.includes(:user).latest.page(params[:repost_page]).per(10)
     @commenting_posts = @user.commenting_posts.includes(:user).latest.page(params[:comment_page]).per(10)
   end
+
+  def edit
+    if params[:id].to_i != current_user.id
+      p 'current_user.id'
+      p current_user.id
+      redirect_to root_path, flash: { danger: '自分以外のプロフィールは編集できません。' }
+      return
+    end
+  end
+
+  def update
+    if current_user.update(user_params)
+      return
+    else
+      return
+    end
+  end
+
+  private
+
+  def user_params
+    params.require(:user).permit(%i[name introduction place website birthdate photo header_photo])
+  end
 end
