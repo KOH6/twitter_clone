@@ -14,7 +14,8 @@
             = image_tag @user.header_photo, class: "upper"
           - if @user.photo.attached?
             = image_tag @user.photo, class: "rounded-circle profile"
-        .mt-lg-5
+        .text-end
+          = link_to "プロフィールを編集する", edit_user_path(current_user), data: { turbo: false, "turbo-method": :post }, class: "btn btn-outline-dark m-2 fw-bold"
         .profile-content
           .mt-5
             h1.mb-0
