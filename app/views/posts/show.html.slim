@@ -6,7 +6,8 @@
       = render "users/shared/error_messages", resource: @post
       = render 'shared/flash'
       h3.fw-bold.my-3
-        | 詳細
+        | ツイート
+      = render "post_detail", post: @post
       - @comments.each do |comment|
         = render comment
 
