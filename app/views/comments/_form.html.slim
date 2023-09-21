@@ -1,5 +1,5 @@
 - if user_signed_in?
-  = form_with url: comments_path, model: comment, data: { turbo: false }, locale: true do |f|
+  = form_with url: comments_path(post_id: post.id), model: comment, data: { turbo: false }, locale: true do |f|
     .card.my-3
       .card-body.container-grid
         .row

@@ -9,7 +9,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @comments = @post.comments.includes(:user).latest
-    @content = Comment.new
+    @comment = Comment.new
   end
 
   def create
