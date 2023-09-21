@@ -8,6 +8,7 @@
       h3.fw-bold.my-3
         | ツイート
       = render "post_detail", post: @post
+      = render 'comments/form', :user => @user, :comment => @comment
       - @comments.each do |comment|
         = render comment
 

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   resources :posts, only: %i[index show create]
   resources :users, only: %i[show edit update]
+  resources :comments, only: %i[create]
 
   root 'posts#index'
 end

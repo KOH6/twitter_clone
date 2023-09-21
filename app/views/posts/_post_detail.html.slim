@@ -7,7 +7,7 @@
       .col
         p.card-title.fw-bold
           = post.user_name
-        p.card-subtitle.text-muted.d-flex.align-items-center.mx-2
+        p.card-subtitle.text-muted.d-flex.align-items-center
           | @
           = post.user_user_name
       .d-flex.flex-row
@@ -18,5 +18,5 @@
         .d-flex.flex-row.my-2
         - post.images.each do |image|
           = image_tag image, class: "img-fluid", style: " max-width: 50%; height: auto;"
-      p.card-subtitle.text-muted.d-flex.align-items-center.mx-2
+      p.card-subtitle.text-muted.d-flex.align-items-center
         = l post.created_at
