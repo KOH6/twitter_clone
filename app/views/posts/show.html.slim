@@ -7,3 +7,6 @@
       = render 'shared/flash'
       h3.fw-bold.my-3
         | 詳細
+      - @comments.each do |comment|
+        = render comment
+
