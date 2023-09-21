@@ -1,0 +1,9 @@
+.container-fluid
+  = render 'shared/navigation'
+  .row.flex-nowrap
+    = render 'shared/sidebar', :user => @user
+    .col
+      = render "users/shared/error_messages", resource: @post
+      = render 'shared/flash'
+      h3.fw-bold.my-3
+        | 詳細

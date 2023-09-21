@@ -1,9 +1,14 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
-  before_action :set_user_and_posts
+  before_action :set_user
+  before_action :set_posts, only: %i[index create]
 
   def index; end
+
+  def show
+    @post = Post.find(params[:id])
+  end
 
   def create
     @post = Post.new(post_params)
@@ -17,8 +22,11 @@ class PostsController < ApplicationController
 
   private
 
-  def set_user_and_posts
+  def set_user
     @user = user_signed_in? ? current_user : User.new
+  end
+
+  def set_posts
     @post = Post.new
     @posts = Post.includes(:user).latest.page(params[:posts_page]).per(10)
     # 自分がフォローしている投稿
