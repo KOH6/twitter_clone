@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   }
 
   resources :posts, only: %i[index]
-  resources :users, only: %i[show]
+  resources :users, only: %i[show edit update]
 
   root 'posts#index'
 end

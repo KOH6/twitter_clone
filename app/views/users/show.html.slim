@@ -14,26 +14,28 @@
             = image_tag @user.header_photo, class: "upper"
           - if @user.photo.attached?
             = image_tag @user.photo, class: "rounded-circle profile"
-        .mt-lg-5
+        .text-end
+          = link_to "プロフィールを編集する", edit_user_path(current_user), data: { turbo: false, "turbo-method": :post }, class: "btn btn-outline-dark m-2 fw-bold"
         .profile-content
           .mt-5
             h1.mb-0
               = @user.name
             span.text-muted.d-block.mb-2
               = "\@#{@user.user_name}"
-            span
-              = @user.introduction
+            - if @user.introduction?
+              span
+                = safe_join(@user.introduction.split("\n"),tag(:br))
             .container-grid.w-75.text-muted
               .row
-                - if @user.place
+                - if @user.place?
                   .col
                     i.bi-geo-alt.mx-2
                     = @user.place
-                - if @user.website
+                - if @user.website?
                   .col
                     i.bi-link-45deg.mx-2
                     = @user.website
-                - if @user.birthdate
+                - if @user.birthdate?
                   .col
                     i.bi-balloon.mx-2
                     | 誕生日：

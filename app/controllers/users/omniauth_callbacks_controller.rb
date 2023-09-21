@@ -10,7 +10,7 @@ module Users
     def github
       @user = User.from_omniauth(request.env['omniauth.auth'])
       @user.skip_confirmation!
-      @user.save!(context: :omniauth)
+      @user.save!(context: :not_new_form)
       if @user.persisted?
         sign_in_and_redirect @user, event: :authentication
         set_flash_message(:notice, :success, kind: 'GitHub') if is_navigational_format?
