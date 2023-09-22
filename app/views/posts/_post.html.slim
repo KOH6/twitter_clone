@@ -1,23 +1,43 @@
 .card
-  = link_to post_path(post), data: { turbo: false}, class: "post"
-    .card-body.container-grid.text-dark
-      .row
-        .col-1
-          - if post.user.photo.attached?
-            = image_tag post.user.photo, class: "rounded-circle img-fluid", style: " max-width: 100%; height: auto;"
-        .col
+  .card-body.container-grid
+    = link_to post_path(post), data: { turbo: false}, class: "row post text-dark"
+      .col-1
+        - if post.user.photo.attached?
+          = image_tag post.user.photo, class: "rounded-circle img-fluid", style: " max-width: 100%; height: auto;"
+      .col
+        .d-flex.flex-row
+          p.card-title.fw-bold
+            = post.user_name
+          p.card-subtitle.text-muted.d-flex.align-items-center.mx-2
+            | @
+            = post.user_user_name
+            | ・
+            = l post.created_at
+        - if post.content?
+          span.card-text
+            = safe_join(post.content.split("\n"),tag(:br))
+        - if post.images.attached?
           .d-flex.flex-row
-            p.card-title.fw-bold
-              = post.user_name
-            p.card-subtitle.text-muted.d-flex.align-items-center.mx-2
-              | @
-              = post.user_user_name
-              | ・
-              = l post.created_at
-          - if post.content?
-            span.card-text
-              = safe_join(post.content.split("\n"),tag(:br))
-          - if post.images.attached?
-            .d-flex.flex-row
-            - post.images.each do |image|
-              = image_tag image, class: "img-fluid", style: " max-width: 50%; height: auto;"
+          - post.images.each do |image|
+            = image_tag image, class: "img-fluid", style: " max-width: 50%; height: auto;"
+    hr
+    .row.my-2
+      .col.d-flex.justify-content-around
+        .row.g-1
+          .col-auto
+            = link_to likes_path, data: { turbo: false }, class: "text-decoration-none text-muted d-flex align-items-center fs-6 "
+              i.fs-6.bi-chat.mx-2
+          .col-auto.text-muted
+            = post.comments.size
+      .col.d-flex.justify-content-around
+        = link_to likes_path, data: { turbo: false }, class: "text-decoration-none text-muted d-flex align-items-center fs-6 text-center"
+          i.fs-6.bi-repeat.mx-2
+          = post.reposts.size
+      .col.d-flex.justify-content-around
+        = link_to likes_path, data: { turbo: false }, class: "text-decoration-none text-muted d-flex align-items-center fs-6 text-center"
+          i.fs-6.bi-heart.mx-2
+          = post.likes.size
+      .col.d-flex.justify-content-around
+        = link_to likes_path, data: { turbo: false }, class: "text-decoration-none text-muted d-flex align-items-center fs-6 text-center"
+          i.fs-6.bi-bookmark.mx-2
+    hr

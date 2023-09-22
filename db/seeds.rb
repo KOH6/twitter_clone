@@ -39,7 +39,7 @@ POST_COUNT.times do |n|
     user_id: user_ids.reject { |id| id == post.user_id }.sample,
     post_id: post.id
   )
-  5.times do |m|
+  rand(1..10).times do |m|
     Comment.create!(
       user_id: user_ids.reject { |id| id == post.user_id }.sample,
       post_id: post.id,
