@@ -51,11 +51,11 @@ class User < ApplicationRecord
   end
 
   def already_liking?(post)
-    self.likes.exists?(post_id: post.id)
+    likes.exists?(post_id: post.id)
   end
 
   def like(post)
-    self.likes.find_by(post_id: post.id)
+    likes.find_by(post_id: post.id)
   end
 
   private

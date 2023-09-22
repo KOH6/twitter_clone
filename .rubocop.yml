@@ -26,3 +26,6 @@ Hc/RailsSpecificActionName:
 Rails/LexicallyScopedActionFilter:
   Exclude:
     - app/controllers/users/registrations_controller.rb
+Rails/UniqueValidationWithoutIndex:
+  Exclude:
+    - app/models/like.rb
