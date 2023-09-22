@@ -3,6 +3,7 @@
   .row.flex-nowrap
     = render 'shared/sidebar', :user => @user
     .col
+      = render "users/shared/error_messages", resource: @post
       = render 'shared/flash'
       h3.fw-bold.my-3
         | ホーム
@@ -14,7 +15,7 @@
           button#pills-profile-tab.fw-bold.nav-link[data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false"]
             |  フォロー中
       #pills-tabContent.tab-content
-        = render 'form', :user => @user
+        = render 'form', :user => @user, :post => @post
         #pills-home.tab-pane.fade.show.active
           = paginate @posts, :param_name => 'posts_page'
           - @posts.each do |post|

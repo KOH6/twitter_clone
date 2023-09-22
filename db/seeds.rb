@@ -27,7 +27,7 @@ end
 POST_COUNT.times do |n|
   post = Post.create!(
     user_id: user_ids.sample,
-    content: "テスト投稿#{n}です。<br>テスト投稿#{n}です。<br>テスト投稿#{n}です。"
+    content: "テスト投稿#{n}です。\nテスト投稿#{n}です。\nテスト投稿#{n}です。"
   )
   post_ids << post.id
 

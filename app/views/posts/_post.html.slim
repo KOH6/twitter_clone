@@ -3,7 +3,7 @@
     .row
       .col-1
         - if post.user.photo.attached?
-          = image_tag post.user.photo, class: "rounded-circle img-fluid", style: " max-width: 150%; height: auto;"
+          = image_tag post.user.photo, class: "rounded-circle img-fluid", style: " max-width: 100%; height: auto;"
       .col
         .d-flex.flex-row
           p.card-title.fw-bold
@@ -13,5 +13,10 @@
             = post.user_user_name
             | ・
             = l post.created_at
-        p.card-text
-          = post.content.html_safe
+        - if post.content?
+          span.card-text
+            = safe_join(post.content.split("\n"),tag(:br))
+        - if post.images.attached?
+          .d-flex.flex-row
+          - post.images.each do |image|
+            = image_tag image, class: "img-fluid", style: " max-width: 50%; height: auto;"
