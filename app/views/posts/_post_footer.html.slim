@@ -8,7 +8,8 @@
     .col.d-flex.justify-content-around
       = link_to post_likes_path(post), data: { "turbo-method": :post }, class: "text-decoration-none text-muted d-flex align-items-center fs-6 text-center"
         i.fs-6.bi-repeat.mx-2
-        = post.reposts.size
+        - if !post.reposts.size.zero?
+          = post.reposts.size
     .col.d-flex.justify-content-around
       - if current_user.like(post).present?
         = link_to post_like_path(post, current_user.like(post) ), data: { "turbo-method": :delete }, class: "text-decoration-none d-flex align-items-center fs-6 text-center already-liking"
@@ -17,7 +18,8 @@
       - else
         = link_to post_likes_path(post), data: { "turbo-method": :post }, class: "text-decoration-none text-muted d-flex align-items-center fs-6 text-center"
           i.fs-6.bi-heart.mx-2
-          = post.likes.size
+          - if !post.likes.size.zero?
+            = post.likes.size
     .col.d-flex.justify-content-around
       = link_to post_likes_path(post), data: { "turbo-method": :post }, class: "text-decoration-none text-muted d-flex align-items-center fs-6 text-center"
         i.fs-6.bi-bookmark.mx-2
