@@ -50,6 +50,14 @@ class User < ApplicationRecord
     end
   end
 
+  def already_liking?(post)
+    self.likes.exists?(post_id: post.id)
+  end
+
+  def like(post)
+    self.likes.find_by(post_id: post.id)
+  end
+
   private
 
   def attach_dummy_photo
