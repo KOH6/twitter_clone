@@ -3,8 +3,6 @@
 class CommentsController < ApplicationController
   def create
     @comment = current_user.comments.build(comment_params)
-    @comment.post_id = params[:post_id].to_i
-
     if @comment.save
       redirect_to request.referer
     else
@@ -15,6 +13,7 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    params.require(:comment).permit(:content, images: [])
+    permit_params = params.require(:comment).permit(:content, images: [])
+    permit_params.merge(post_id: params[:post_id].to_i)
   end
 end
