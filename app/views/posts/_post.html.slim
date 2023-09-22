@@ -20,6 +20,7 @@
           .d-flex.flex-row
           - post.images.each do |image|
             = image_tag image, class: "img-fluid", style: " max-width: 50%; height: auto;"
+  - if user_signed_in?
     hr
     .row.my-2
       .col.d-flex.justify-content-around
