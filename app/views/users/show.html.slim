@@ -69,17 +69,17 @@
         #pills-post.tab-pane.fade.show.active
           = paginate @posts, :param_name => 'posts_page'
           - @posts.each do |post|
-            = render post
+            = render post, :user => current_user
         #pills-like.tab-pane.fade
           = paginate @liking_posts, :param_name => 'like_page'
           - @liking_posts.each do |post|
-            = render post
+            = render post, :user => current_user
         #pills-repost.tab-pane.fade
           = paginate @reposting_posts, :param_name => 'repost_page'
           - @reposting_posts.each do |post|
-            = render post
+            = render post, :user => current_user
         #pills-comment.tab-pane.fade
           = paginate @commenting_posts, :param_name => 'comment_page'
           - @commenting_posts.each do |post|
-            = render post
+            = render post, :user => current_user
 
