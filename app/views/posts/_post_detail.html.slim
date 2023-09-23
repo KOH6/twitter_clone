@@ -20,3 +20,4 @@
           = image_tag image, class: "img-fluid", style: " max-width: 50%; height: auto;"
       p.card-subtitle.text-muted.d-flex.align-items-center
         = l post.created_at
+    = render "posts/post_footer", post:, user:

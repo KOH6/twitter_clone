@@ -7,7 +7,7 @@
       = render 'shared/flash'
       h3.fw-bold.my-3
         | ツイート
-      = render "post_detail", post: @post
+      = render "post_detail", post: @post, user: @user
       = render 'comments/form', :user => @user, :comment => @comment, :post => @post
       - @comments.each do |comment|
         = render comment
