@@ -1,22 +1,23 @@
 .card
-  .card-body.container-grid
-    .row
-      .col-1
-        - if post.user.photo.attached?
-          = image_tag post.user.photo, class: "rounded-circle img-fluid", style: " max-width: 100%; height: auto;"
-      .col
-        .d-flex.flex-row
-          p.card-title.fw-bold
-            = post.user_name
-          p.card-subtitle.text-muted.d-flex.align-items-center.mx-2
-            | @
-            = post.user_user_name
-            | ・
-            = l post.created_at
-        - if post.content?
-          span.card-text
-            = safe_join(post.content.split("\n"),tag(:br))
-        - if post.images.attached?
+  = link_to post_path(post), data: { turbo: false}, class: "post"
+    .card-body.container-grid.text-dark
+      .row
+        .col-1
+          - if post.user.photo.attached?
+            = image_tag post.user.photo, class: "rounded-circle img-fluid", style: " max-width: 100%; height: auto;"
+        .col
           .d-flex.flex-row
-          - post.images.each do |image|
-            = image_tag image, class: "img-fluid", style: " max-width: 50%; height: auto;"
+            p.card-title.fw-bold
+              = post.user_name
+            p.card-subtitle.text-muted.d-flex.align-items-center.mx-2
+              | @
+              = post.user_user_name
+              | ・
+              = l post.created_at
+          - if post.content?
+            span.card-text
+              = safe_join(post.content.split("\n"),tag(:br))
+          - if post.images.attached?
+            .d-flex.flex-row
+            - post.images.each do |image|
+              = image_tag image, class: "img-fluid", style: " max-width: 50%; height: auto;"

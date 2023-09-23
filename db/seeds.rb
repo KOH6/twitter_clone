@@ -39,11 +39,13 @@ POST_COUNT.times do |n|
     user_id: user_ids.reject { |id| id == post.user_id }.sample,
     post_id: post.id
   )
-  Comment.create!(
-    user_id: user_ids.reject { |id| id == post.user_id }.sample,
-    post_id: post.id,
-    content: "#{post.user_name}へ、コメント#{n}です"
-  )
+  5.times do |m|
+    Comment.create!(
+      user_id: user_ids.reject { |id| id == post.user_id }.sample,
+      post_id: post.id,
+      content: "#{post.user_name}へ、投稿#{n}に対するコメント#{m}です"
+    )
+  end
 end
 
 user_ids.each do |user_id|

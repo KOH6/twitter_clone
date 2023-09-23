@@ -1,0 +1,22 @@
+.card
+  .card-body.container-grid.text-dark
+    .row.my-2
+      .col-1
+        - if post.user.photo.attached?
+          = image_tag post.user.photo, class: "rounded-circle img-fluid", style: " max-width: 100%; height: auto;"
+      .col
+        p.card-title.fw-bold
+          = post.user_name
+        p.card-subtitle.text-muted.d-flex.align-items-center
+          | @
+          = post.user_user_name
+      .d-flex.flex-row
+      - if post.content?
+        span.card-text.my-2
+          = safe_join(post.content.split("\n"),tag(:br))
+      - if post.images.attached?
+        .d-flex.flex-row.my-2
+        - post.images.each do |image|
+          = image_tag image, class: "img-fluid", style: " max-width: 50%; height: auto;"
+      p.card-subtitle.text-muted.d-flex.align-items-center
+        = l post.created_at
