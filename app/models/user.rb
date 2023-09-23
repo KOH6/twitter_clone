@@ -50,10 +50,6 @@ class User < ApplicationRecord
     end
   end
 
-  def already_liking?(post)
-    likes.exists?(post_id: post.id)
-  end
-
   def like(post)
     likes.find_by(post_id: post.id)
   end
