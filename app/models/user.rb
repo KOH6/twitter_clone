@@ -50,6 +50,10 @@ class User < ApplicationRecord
     end
   end
 
+  def like(post)
+    likes.find_by(post_id: post.id)
+  end
+
   private
 
   def attach_dummy_photo

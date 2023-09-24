@@ -19,8 +19,8 @@
         #pills-home.tab-pane.fade.show.active
           = paginate @posts, :param_name => 'posts_page'
           - @posts.each do |post|
-            = render post
+            = render post, :user => @user
         #pills-profile.tab-pane.fade
           = paginate @followee_posts, :param_name => 'followee_page'
           - @followee_posts.each do |post|
-            = render post
+            = render post, :user => @user
