@@ -7,7 +7,7 @@ class RepostsController < ApplicationController
   end
 
   def destroy
-    @repost = Repost.find_by(post_id: params[:post_id], user_id: current_user.id)
+    @repost = current_user.reposts.find_by(post_id: params[:post_id])
     @repost.destroy
     redirect_to request.referer
   end
