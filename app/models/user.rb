@@ -58,6 +58,10 @@ class User < ApplicationRecord
     reposts.find_by(post_id: post.id)
   end
 
+  def followee(user)
+    followees.find_by(id: user.id)
+  end
+
   private
 
   def attach_dummy_photo
