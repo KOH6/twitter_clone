@@ -4,12 +4,21 @@
       .col-1
         - if post.user.photo.attached?
           = image_tag post.user.photo, class: "rounded-circle img-fluid", style: " max-width: 100%; height: auto;"
-      .col
+      .col-10
         p.card-title.fw-bold
           = post.user_name
         p.card-subtitle.text-muted.d-flex.align-items-center
           | @
           = post.user_user_name
+      .col-1
+        .dropdown.pb-4
+          a.text-muted[href="#" data-bs-toggle="dropdown" aria-expanded="false"]
+            i.fs-4.bi-three-dots.mx-2
+          ul.dropdown-menu.text-small.shadow
+            li
+              a.dropdown-item[href="#"]
+                = "@#{post.user_user_name}さんをフォロー"
+
       .d-flex.flex-row
       - if post.content?
         span.card-text.my-2
