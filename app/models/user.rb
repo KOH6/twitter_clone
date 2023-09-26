@@ -36,10 +36,15 @@ class User < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   has_many :bookmarking_posts, through: :bookmarks, source: :post
 
+  has_many :group_members, dependent: :destroy
+  has_many :groups, through: :group_members
+
+  has_many :messages, dependent: :destroy
+
   with_options presence: true do
     validates :name
     validates :user_name, uniqueness: true
-    # 電話番号と誕生日はGithubでの新規登録時には無効化する。
+    # 電話番号と誕生日は画面からの新規登録時以外は無効化する。
     validates :phone, unless: -> { validation_context == :not_new_form }
     validates :birthdate, unless: -> { validation_context == :not_new_form }
   end

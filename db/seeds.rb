@@ -24,6 +24,23 @@ USER_COUNT.times do |n|
   user_ids << user.id
 end
 
+user_ids.each do |user_id|
+  other_ids = user_ids.reject { |id| id == user_id }.sample(rand(1...USER_COUNT))
+
+  other_ids.each do |other_id|
+    group = Group.create!
+    member_ids = [user_id, other_id]
+    rand(0..15).times do |n|
+      Message.create!(
+        user_id: member_ids.sample,
+        group_id: group.id,
+        content: "テストコメント#{n}です。\nテストコメント#{n}です。\nテストコメント#{n}です。"
+      )
+    end
+    member_ids.each { |member_id|  GroupMember.create!(user_id: member_id, group_id: group.id)}
+  end
+end
+
 POST_COUNT.times do |n|
   post = Post.create!(
     user_id: user_ids.sample,
@@ -43,7 +60,7 @@ POST_COUNT.times do |n|
     user_id: user_ids.reject { |id| id == post.user_id }.sample,
     post_id: post.id
   )
-  rand(1..10).times do |m|
+  rand(0..10).times do |m|
     Comment.create!(
       user_id: user_ids.reject { |id| id == post.user_id }.sample,
       post_id: post.id,
