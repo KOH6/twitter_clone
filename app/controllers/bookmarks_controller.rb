@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 class BookmarksController < ApplicationController
   before_action :set_user
 
   def index
-    @bookmarking_posts = @user.bookmarking_posts.includes(:user, :likes, :reposts, :bookmarks).latest.page(params[:page]).per(10)
+    @bookmarking_posts = @user.bookmarking_posts.includes(INCLUDES_MODELS).latest.page(params[:page]).per(10)
   end
 
   def create

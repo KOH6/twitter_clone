@@ -26,11 +26,10 @@ class PostsController < ApplicationController
 
   def set_posts
     @post = Post.new
-    @posts = Post.includes(:user, :likes, :reposts, :bookmarks).latest.page(params[:posts_page]).per(10)
+    @posts = Post.includes(INCLUDES_MODELS).latest.page(params[:posts_page]).per(10)
     # 自分がフォローしている投稿
     followee_ids = @user.followees.map(&:id)
-    @followee_posts = Post.includes(:user, :likes,
-                                    :reposts, :bookmarks).followee_posts(followee_ids:).page(params[:followee_page]).per(10)
+    @followee_posts = Post.includes(INCLUDES_MODELS).followee_posts(followee_ids:).page(params[:followee_page]).per(10)
   end
 
   def post_params
