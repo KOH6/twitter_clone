@@ -6,10 +6,15 @@
         i.fs-6.bi-chat.mx-2
         = post.comments.size
     .col.d-flex.justify-content-around
-      = link_to post_likes_path(post), data: { "turbo-method": :post }, class: "text-decoration-none text-muted d-flex align-items-center fs-6 text-center"
-        i.fs-6.bi-repeat.mx-2
-        - if !post.reposts.size.zero?
+      - if current_user.repost(post).present?
+        = link_to post_repost_path(post, current_user.repost(post) ), data: { "turbo-method": :delete }, class: "text-decoration-none d-flex align-items-center fs-6 text-center already-reposting"
+          i.fs-6.bi-repeat.mx-2
           = post.reposts.size
+      - else
+        = link_to post_reposts_path(post), data: { "turbo-method": :post }, class: "text-decoration-none text-muted d-flex align-items-center fs-6 text-center"
+          i.fs-6.bi-repeat.mx-2
+          - if !post.reposts.size.zero?
+            = post.reposts.size
     .col.d-flex.justify-content-around
       - if current_user.like(post).present?
         = link_to post_like_path(post, current_user.like(post) ), data: { "turbo-method": :delete }, class: "text-decoration-none d-flex align-items-center fs-6 text-center already-liking"

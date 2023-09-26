@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   resources :posts, only: %i[index show create] do
     resources :likes, only: %i[create destroy]
+    resources :reposts, only: %i[create destroy]
   end
   resources :users, only: %i[show edit update]
   resources :comments, only: %i[create]

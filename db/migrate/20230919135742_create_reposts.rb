@@ -8,5 +8,7 @@ class CreateReposts < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
+
+    add_index :reposts, %i[user_id post_id], unique: true
   end
 end
