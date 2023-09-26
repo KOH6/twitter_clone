@@ -8,4 +8,10 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: %i[phone birthdate name user_name])
   end
+
+  private
+
+  def set_user
+    @user = user_signed_in? ? current_user : User.new
+  end
 end

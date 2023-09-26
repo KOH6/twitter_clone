@@ -33,6 +33,9 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :commenting_posts, through: :comments, source: :post
 
+  has_many :bookmarks, dependent: :destroy
+  has_many :bookmarking_posts, through: :bookmarks, source: :post
+
   with_options presence: true do
     validates :name
     validates :user_name, uniqueness: true

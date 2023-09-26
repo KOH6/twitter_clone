@@ -13,6 +13,9 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :commented_users, through: :comments, source: :user
 
+  has_many :bookmarks, dependent: :destroy
+  has_many :bookmarked_users, through: :bookmarks, source: :user
+
   validates :content, presence: true, length: { maximum: 140 }
 
   scope :latest, -> { order(created_at: :desc) }
