@@ -65,6 +65,10 @@ class User < ApplicationRecord
     followees.find_by(id: user.id)
   end
 
+  def bookmark(post)
+    bookmarks.find_by(post_id: post.id)
+  end
+
   private
 
   def attach_dummy_photo

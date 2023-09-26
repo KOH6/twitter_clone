@@ -27,6 +27,12 @@
           - if !post.likes.size.zero?
             = post.likes.size
     .col.d-flex.justify-content-around
-      = link_to post_likes_path(post), data: { "turbo-method": :post }, class: "text-decoration-none text-muted d-flex align-items-center fs-6 text-center"
-        i.fs-6.bi-bookmark.mx-2
-        | 3
+      - if current_user.bookmark(post).present?
+        = link_to post_bookmark_path(post, current_user.bookmark(post) ), data: { "turbo-method": :delete }, class: "text-decoration-none d-flex align-items-center fs-6 text-center already-bookmarking"
+          i.fs-6.bi-bookmark-fill.mx-2
+          = post.bookmarks.size
+      - else
+        = link_to post_bookmarks_path(post), data: { "turbo-method": :post }, class: "text-decoration-none text-muted d-flex align-items-center fs-6 text-center"
+          i.fs-6.bi-bookmark.mx-2
+          - if !post.bookmarks.size.zero?
+            = post.bookmarks.size
