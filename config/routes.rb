@@ -10,10 +10,14 @@ Rails.application.routes.draw do
   resources :posts, only: %i[index show create] do
     resources :likes, only: %i[create destroy]
     resources :reposts, only: %i[create destroy]
+    resources :bookmarks, only: %i[create destroy]
   end
+
   resources :users, only: %i[show edit update] do
     resources :follows, only: %i[create destroy]
   end
+
+  resources :bookmarks, only: %i[index]
   resources :comments, only: %i[create]
 
   root 'posts#index'

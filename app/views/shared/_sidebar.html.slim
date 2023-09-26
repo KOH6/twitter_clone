@@ -3,7 +3,7 @@
     .d-flex.flex-column.align-items-center.align-items-sm-start.px-1.pt-2.min-vh-100
       ul.nav.nav-pills.flex-column.mb-0.align-items-center.align-items-sm-start
         li
-          a.nav-link.align-middle.text-dark.px-0.d-flex.align-items-center[href="#"]
+          = link_to root_path, data: { turbo: false }, class: "nav-link align-middle text-dark px-0 d-flex align-items-center"
             i.fs-4.bi-house.mx-2
             span.ms-1.d-none.d-sm-inline[style="font-size:1.5rem"]
               | ホーム
@@ -23,7 +23,7 @@
             span.ms-1.d-none.d-sm-inline[style="font-size:1.5rem"]
               | メッセージ
         li
-          a.nav-link.align-middle.text-dark.px-0.d-flex.align-items-center[href="#"]
+          = link_to bookmarks_path, data: { turbo: false }, class: "nav-link align-middle text-dark px-0 d-flex align-items-center"
             i.fs-4.bi-bookmark.mx-2
             span.ms-1.d-none.d-sm-inline[style="font-size:1.5rem"]
               | ブックマーク
