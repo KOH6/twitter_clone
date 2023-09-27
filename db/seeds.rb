@@ -28,7 +28,12 @@ user_ids.each do |user_id|
   other_ids = user_ids.reject { |id| id == user_id }.sample(rand(1...USER_COUNT))
 
   other_ids.each do |other_id|
-    group = Group.create!
+    groups = GroupMember.where(user_id:).map(&:group)
+    other_groups = []
+    groups.each do |group|
+      other_groups << group if group.group_members.find_by(user_id: other_id)
+    end
+    group = other_groups.size.zero? ? Group.create! : other_groups.first
     member_ids = [user_id, other_id]
     rand(0..15).times do |n|
       Message.create!(

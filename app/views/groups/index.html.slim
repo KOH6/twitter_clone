@@ -6,6 +6,8 @@
       = render 'shared/flash'
       h3.fw-bold.my-3
         | メッセージ
-      - @other_users.each do |other_user|
-        = "#{other_user.name}の部屋"
-        .br
+      - @group_infos.each do |group_info|
+        = link_to group_path(group_info[:group_id]), data: { turbo: false }
+          = "#{group_info[:user].name}の部屋"
+          = "#{group_info[:group_id]}のグループID"
+          hr
