@@ -10,6 +10,21 @@
         p.card-subtitle.text-muted.d-flex.align-items-center
           | @
           = post.user_user_name
+      .col-1
+        - if user_signed_in?
+          .dropdown.pb-4
+            a.text-muted[href="#" data-bs-toggle="dropdown" aria-expanded="false"]
+              i.fs-4.bi-three-dots.mx-2
+            ul.dropdown-menu.text-small.shadow.px-2.text-nowrap
+              li
+                - if current_user.followee(post.user).present?
+                  = link_to user_follow_path(post.user, current_user), data: { "turbo-method": :delete }, class: "text-dark text-decoration-none d-flex align-items-center text-center"
+                    i.bi-person-dash.mx-2
+                    = "@#{post.user_user_name}さんのフォローを解除"
+                - elsif post.user != current_user
+                  = link_to user_follows_path(post.user), data: { "turbo-method": :post }, class: "text-dark text-decoration-none d-flex align-items-center"
+                    i.bi-person-add.mx-2
+                    = "@#{post.user_user_name}さんをフォロー"
       .d-flex.flex-row
       - if post.content?
         span.card-text.my-2

@@ -4,7 +4,8 @@
     .col.d-flex.justify-content-around
       = link_to post_path(post), data: { turbo: false }, class: "text-decoration-none text-muted d-flex align-items-center fs-6 text-center"
         i.fs-6.bi-chat.mx-2
-        = post.comments.size
+        - if !post.comments.size.zero?
+          = post.comments.size
     .col.d-flex.justify-content-around
       - if current_user.repost(post).present?
         = link_to post_repost_path(post, current_user.repost(post) ), data: { "turbo-method": :delete }, class: "text-decoration-none d-flex align-items-center fs-6 text-center already-reposting"
