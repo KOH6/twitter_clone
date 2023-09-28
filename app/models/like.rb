@@ -3,6 +3,7 @@
 class Like < ApplicationRecord
   belongs_to :user
   belongs_to :post
+  has_one :notification, as: :action, dependent: :destroy
 
   validates :user_id, presence: true, uniqueness: { scope: :post_id }
 end

@@ -4,6 +4,7 @@ class Comment < ApplicationRecord
   belongs_to :user
   belongs_to :post
   has_many_attached :images
+  has_one :notification, as: :action, dependent: :destroy
 
   validates :content, presence: true
 
