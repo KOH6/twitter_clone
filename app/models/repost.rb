@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Repost < ApplicationRecord
+  include NotificationCreator
+
   after_create :create_notification
 
   belongs_to :user
@@ -8,10 +10,4 @@ class Repost < ApplicationRecord
   has_one :notification, as: :action, dependent: :destroy
 
   validates :user_id, presence: true, uniqueness: { scope: :post_id }
-
-  private
-
-  def create_notification
-    Notification.create!(user: post.user, action: self, action_type: self.class.name )
-  end
 end

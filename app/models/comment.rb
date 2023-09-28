@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Comment < ApplicationRecord
+  include NotificationCreator
+
   after_create :create_notification
 
   belongs_to :user
@@ -13,10 +15,4 @@ class Comment < ApplicationRecord
   scope :latest, -> { order(created_at: :desc) }
 
   delegate :name, :user_name, to: :user, prefix: true
-
-  private
-
-  def create_notification
-    Notification.create!(user: post.user, action: self, action_type: self.class.name )
-  end
 end
