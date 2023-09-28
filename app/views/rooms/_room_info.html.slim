@@ -1,5 +1,5 @@
 .card
-  .card-body.container-grid
+  div class="card-body container-grid #{'bg-light' if params[:id].to_i == room_info[:room].id}"
     = link_to room_path(room_info[:room].id), data: { turbo: false }, class: "row post text-dark"
       .col-1.d-flex.align-items-center
         - if room_info[:user].photo.attached?
