@@ -28,11 +28,11 @@ class RoomsController < ApplicationController
 
   def set_room_infos
     @room_infos = []
-    rooms = current_user.rooms.distinct.latest
+    rooms = current_user.rooms.distinct.includes(:room_members).latest
     rooms.map do |room|
       room_info = {}
-      room_info[:room_id] = room.id
-      room_info[:user] = room.room_members.where.not(user_id: current_user.id).first.user
+      room_info[:room] = room
+      room_info[:user] = room.room_members.where.not(user_id: current_user.id).includes(:user).first.user
       @room_infos << room_info
     end
   end
