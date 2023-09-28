@@ -8,7 +8,7 @@ class RoomsController < ApplicationController
 
   def show
     room = current_user.rooms.find(params[:id])
-    @messages = room.messages.includes(:user).old
+    @messages = room.messages.includes(:user).old.page(params[:page]).per(7)
   end
 
   def create
