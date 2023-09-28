@@ -1,5 +1,6 @@
 module NotificationCreator
   def create_notification
-    Notification.create!(user: post.user, action: self, action_type: self.class.name )
+    notification = Notification.create!(user: post.user, action: self, action_type: self.class.name )
+    NotificationMailer.complete(notification:).deliver_later
   end
 end
