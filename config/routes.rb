@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   resources :bookmarks, only: %i[index]
   resources :comments, only: %i[create]
   resources :rooms, only: %i[index show]
+  resources :messages, only: %i[create]
 
   root 'posts#index'
 end

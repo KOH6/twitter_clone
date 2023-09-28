@@ -4,6 +4,8 @@ class Room < ApplicationRecord
   has_many :room_members, dependent: :destroy
   has_many :messages, dependent: :destroy
 
+  scope :latest, -> { order(created_at: :desc) }
+
   def self.search_existing_room(user_id:, other_id:)
     existing_room = nil
     rooms = RoomMember.where(user_id:).map(&:room)

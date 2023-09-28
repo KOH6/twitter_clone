@@ -28,7 +28,7 @@ class RoomsController < ApplicationController
 
   def set_room_infos
     @room_infos = []
-    rooms = current_user.rooms.distinct
+    rooms = current_user.rooms.distinct.latest
     rooms.map do |room|
       room_info = {}
       room_info[:room_id] = room.id

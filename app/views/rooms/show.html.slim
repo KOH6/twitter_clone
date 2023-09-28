@@ -3,7 +3,6 @@
   .row.flex-nowrap
     = render 'shared/sidebar', :user => @user
     .col
-      = render 'shared/flash'
       h3.fw-bold.my-3
         | メッセージ
       - @room_infos.each do |room_info|
@@ -14,8 +13,16 @@
     .col
       h3.fw-bold.my-3
         | メッセージ詳細
+      = render 'shared/flash'
       - @messages.each do |message|
           = "投稿者：#{message.user.name}"
           = "内容：#{message.content}"
           = "投稿日時：#{l message.created_at}"
           hr
+      = form_with url: messages_path(room_id: params[:id]), model: Message.new , data: { turbo: false }, locale: true do |f|
+        .card.mb-3
+          .card-body
+            = f.text_area :content, class: 'form-control', placeholder: '新しいメッセージを作成', rows: 1
+            button.btn.btn-primary.px-4.text-white.fw-bold[type="submit"]
+              | メッセージを送る
+
