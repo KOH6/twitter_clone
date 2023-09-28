@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   resources :comments, only: %i[create]
   resources :rooms, only: %i[index show]
   resources :messages, only: %i[create]
+  resources :notifications, only: %i[index]
 
   root 'posts#index'
 end
