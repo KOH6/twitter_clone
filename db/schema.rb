@@ -72,20 +72,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_26_121703) do
     t.index ["follower_id"], name: "index_follows_on_follower_id"
   end
 
-  create_table "group_members", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "group_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["group_id"], name: "index_group_members_on_group_id"
-    t.index ["user_id"], name: "index_group_members_on_user_id"
-  end
-
-  create_table "groups", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "likes", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "post_id", null: false
@@ -98,11 +84,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_26_121703) do
 
   create_table "messages", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "group_id", null: false
+    t.bigint "room_id", null: false
     t.text "content", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["group_id"], name: "index_messages_on_group_id"
+    t.index ["room_id"], name: "index_messages_on_room_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
@@ -122,6 +108,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_26_121703) do
     t.index ["post_id"], name: "index_reposts_on_post_id"
     t.index ["user_id", "post_id"], name: "index_reposts_on_user_id_and_post_id", unique: true
     t.index ["user_id"], name: "index_reposts_on_user_id"
+  end
+
+  create_table "room_members", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "room_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_room_members_on_room_id"
+    t.index ["user_id"], name: "index_room_members_on_user_id"
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -168,13 +168,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_26_121703) do
   add_foreign_key "comments", "users"
   add_foreign_key "follows", "users", column: "followee_id"
   add_foreign_key "follows", "users", column: "follower_id"
-  add_foreign_key "group_members", "groups"
-  add_foreign_key "group_members", "users"
   add_foreign_key "likes", "posts"
   add_foreign_key "likes", "users"
-  add_foreign_key "messages", "groups"
+  add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
   add_foreign_key "posts", "users"
   add_foreign_key "reposts", "posts"
   add_foreign_key "reposts", "users"
+  add_foreign_key "room_members", "rooms"
+  add_foreign_key "room_members", "users"
 end

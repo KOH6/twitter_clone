@@ -28,21 +28,21 @@ user_ids.each do |user_id|
   other_ids = user_ids.reject { |id| id == user_id }.sample(rand(1...USER_COUNT))
 
   other_ids.each do |other_id|
-    groups = GroupMember.where(user_id:).map(&:group)
-    other_groups = []
-    groups.each do |group|
-      other_groups << group if group.group_members.find_by(user_id: other_id)
+    rooms = RoomMember.where(user_id:).map(&:room)
+    other_rooms = []
+    rooms.each do |room|
+      other_rooms << room if room.room_members.find_by(user_id: other_id)
     end
-    group = other_groups.size.zero? ? Group.create! : other_groups.first
+    room = other_rooms.size.zero? ? Room.create! : other_rooms.first
     member_ids = [user_id, other_id]
     rand(0..15).times do |n|
       Message.create!(
         user_id: member_ids.sample,
-        group_id: group.id,
+        room_id: room.id,
         content: "テストコメント#{n}です。\nテストコメント#{n}です。\nテストコメント#{n}です。"
       )
     end
-    member_ids.each { |member_id|  GroupMember.create!(user_id: member_id, group_id: group.id)}
+    member_ids.each { |member_id|  RoomMember.create!(user_id: member_id, room_id: room.id)}
   end
 end
 

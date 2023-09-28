@@ -15,12 +15,12 @@ Rails.application.routes.draw do
 
   resources :users, only: %i[show edit update] do
     resources :follows, only: %i[create destroy]
-    resources :groups, only: %i[create]
+    resources :rooms, only: %i[create]
   end
 
   resources :bookmarks, only: %i[index]
   resources :comments, only: %i[create]
-  resources :groups, only: %i[index show]
+  resources :rooms, only: %i[index show]
 
   root 'posts#index'
 end

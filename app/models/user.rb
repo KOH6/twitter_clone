@@ -36,8 +36,8 @@ class User < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   has_many :bookmarking_posts, through: :bookmarks, source: :post
 
-  has_many :group_members, dependent: :destroy
-  has_many :groups, through: :group_members
+  has_many :room_members, dependent: :destroy
+  has_many :rooms, through: :room_members
 
   has_many :messages, dependent: :destroy
 

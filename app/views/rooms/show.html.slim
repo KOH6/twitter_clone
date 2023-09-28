@@ -6,10 +6,10 @@
       = render 'shared/flash'
       h3.fw-bold.my-3
         | メッセージ
-      - @group_infos.each do |group_info|
-        = link_to group_path(group_info[:group_id]), data: { turbo: false }
-          = "#{group_info[:user].name}の部屋"
-          = "#{group_info[:group_id]}のグループID"
+      - @room_infos.each do |room_info|
+        = link_to room_path(room_info[:room_id]), data: { turbo: false }
+          = "#{room_info[:user].name}の部屋"
+          = "#{room_info[:room_id]}のグループID"
           hr
     .col
       h3.fw-bold.my-3
