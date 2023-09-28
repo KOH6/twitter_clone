@@ -6,6 +6,6 @@
       = render 'shared/flash'
       h3.fw-bold.my-3
         | 通知
-      /= paginate @notifications
-      /- @notifications.each do |notification|
-      /  = render notification, :user => @user
+      = paginate @notifications
+      - @notifications.each do |notification|
+        = render notification
