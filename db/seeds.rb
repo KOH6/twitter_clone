@@ -34,13 +34,13 @@ user_ids.each do |user_id|
       room = existing_room
     else
       room = Room.create!
-      member_ids.each { |member_id|  RoomMember.create!(user_id: member_id, room_id: room.id)}
+      member_ids.each { |member_id| RoomMember.create!(user_id: member_id, room_id: room.id) }
     end
     rand(0..15).times do |n|
       Message.create!(
         user_id: member_ids.sample,
         room_id: room.id,
-        content: (existing_room ? "既存部屋です。" : "") + "テストコメント#{n}です。\nテストコメント#{n}です。\nテストコメント#{n}です。"
+        content: (existing_room ? '既存部屋です。' : '') + "テストコメント#{n}です。\nテストコメント#{n}です。\nテストコメント#{n}です。"
       )
     end
   end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class RoomsController < ApplicationController
   before_action :set_user
   before_action :set_room_infos, only: %i[index show]
@@ -9,8 +11,7 @@ class RoomsController < ApplicationController
     @messages = room.messages.includes(:user).latest
   end
 
-  def create
-  end
+  def create; end
 
   private
 
