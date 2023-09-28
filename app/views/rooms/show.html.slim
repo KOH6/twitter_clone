@@ -3,13 +3,8 @@
   .row.flex-nowrap
     = render 'shared/sidebar', :user => @user
     .col
-      h3.fw-bold.my-3
-        | メッセージ
-      - @room_infos.each do |room_info|
-        = link_to room_path(room_info[:room_id]), data: { turbo: false }
-          = "#{room_info[:user].name}の部屋"
-          = "#{room_info[:room_id]}のグループID"
-          hr
+      = render 'shared/flash'
+      = render 'room_infos', :room_infos => @room_infos
     .col
       h3.fw-bold.my-3
         | メッセージ詳細
