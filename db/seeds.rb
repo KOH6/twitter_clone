@@ -28,21 +28,21 @@ user_ids.each do |user_id|
   other_ids = user_ids.reject { |id| id == user_id }.sample(rand(1...USER_COUNT))
 
   other_ids.each do |other_id|
-    rooms = RoomMember.where(user_id:).map(&:room)
-    other_rooms = []
-    rooms.each do |room|
-      other_rooms << room if room.room_members.find_by(user_id: other_id)
-    end
-    room = other_rooms.size.zero? ? Room.create! : other_rooms.first
     member_ids = [user_id, other_id]
+    existing_room = Room.search_existing_room(user_id:, other_id:)
+    if existing_room
+      room = existing_room
+    else
+      room = Room.create!
+      member_ids.each { |member_id|  RoomMember.create!(user_id: member_id, room_id: room.id)}
+    end
     rand(0..15).times do |n|
       Message.create!(
         user_id: member_ids.sample,
         room_id: room.id,
-        content: "テストコメント#{n}です。\nテストコメント#{n}です。\nテストコメント#{n}です。"
+        content: (existing_room ? "既存部屋です。" : "") + "テストコメント#{n}です。\nテストコメント#{n}です。\nテストコメント#{n}です。"
       )
     end
-    member_ids.each { |member_id|  RoomMember.create!(user_id: member_id, room_id: room.id)}
   end
 end
 
