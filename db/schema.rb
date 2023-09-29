@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_26_082634) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_26_121703) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -82,6 +82,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_26_082634) do
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "room_id", null: false
+    t.text "content", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_messages_on_room_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.text "content", null: false
     t.bigint "user_id", null: false
@@ -98,6 +108,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_26_082634) do
     t.index ["post_id"], name: "index_reposts_on_post_id"
     t.index ["user_id", "post_id"], name: "index_reposts_on_user_id_and_post_id", unique: true
     t.index ["user_id"], name: "index_reposts_on_user_id"
+  end
+
+  create_table "room_members", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "room_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_room_members_on_room_id"
+    t.index ["user_id"], name: "index_room_members_on_user_id"
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -146,7 +170,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_26_082634) do
   add_foreign_key "follows", "users", column: "follower_id"
   add_foreign_key "likes", "posts"
   add_foreign_key "likes", "users"
+  add_foreign_key "messages", "rooms"
+  add_foreign_key "messages", "users"
   add_foreign_key "posts", "users"
   add_foreign_key "reposts", "posts"
   add_foreign_key "reposts", "users"
+  add_foreign_key "room_members", "rooms"
+  add_foreign_key "room_members", "users"
 end
