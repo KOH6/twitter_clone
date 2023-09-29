@@ -3,6 +3,6 @@
 class NotificationMailer < ApplicationMailer
   def complete(notification:)
     @notification = notification
-    mail(to: @notification.user.email, subject: 'Twitterクローン通知')
+    mail(to: @notification.user_email, subject: 'Twitterクローン通知')
   end
 end

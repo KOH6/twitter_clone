@@ -6,6 +6,8 @@ class Notification < ApplicationRecord
 
   scope :latest, -> { order(created_at: :desc) }
 
+  delegate :email, to: :user, prefix: true
+
   def sender
     action.user
   end
