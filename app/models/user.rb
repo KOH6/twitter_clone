@@ -40,6 +40,7 @@ class User < ApplicationRecord
   has_many :rooms, through: :room_members
 
   has_many :messages, dependent: :destroy
+  has_many :notifications, dependent: :destroy
 
   with_options presence: true do
     validates :name

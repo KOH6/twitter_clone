@@ -36,7 +36,7 @@ user_ids.each do |user_id|
       room = Room.create!
       member_ids.each { |member_id| RoomMember.create!(user_id: member_id, room_id: room.id) }
     end
-    rand(0..15).times do |n|
+    rand(1..5).times do |n|
       Message.create!(
         user_id: member_ids.sample,
         room_id: room.id,
@@ -65,7 +65,7 @@ POST_COUNT.times do |n|
     user_id: user_ids.reject { |id| id == post.user_id }.sample,
     post_id: post.id
   )
-  rand(0..10).times do |m|
+  rand(0..5).times do |m|
     Comment.create!(
       user_id: user_ids.reject { |id| id == post.user_id }.sample,
       post_id: post.id,
