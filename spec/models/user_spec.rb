@@ -6,28 +6,28 @@ RSpec.describe User, type: :model do
   describe 'バリデーション' do
     let(:user) { create(:user) }
 
-    context '正常系' do
+    context '正常系のとき' do
       it 'name,user_name,password,phone,birthdateが入力されている場合、登録できること' do
         user = build(:user)
         expect(user).to be_valid
       end
     end
 
-    context "nameカラム" do
+    context 'nameカラム' do
       it '空欄の場合、登録できないこと' do
         user.name = ''
         expect(user).to be_invalid
       end
     end
 
-    context "user_nameカラム" do
+    context 'user_nameカラム' do
       it '空欄の場合、登録できないこと' do
         user.user_name = ''
         expect(user).to be_invalid
       end
     end
 
-    context "emailカラム" do
+    context 'emailカラム' do
       it '空欄の場合、登録できないこと' do
         user.email = ''
         expect(user).to be_invalid
@@ -39,7 +39,7 @@ RSpec.describe User, type: :model do
       end
     end
 
-    context "passwordカラム" do
+    context 'passwordカラム' do
       it '空欄の場合、登録できないこと' do
         user.password = ''
         expect(user).to be_invalid
@@ -52,7 +52,7 @@ RSpec.describe User, type: :model do
       end
     end
 
-    context "password_confirmationカラム" do
+    context 'password_confirmationカラム' do
       it '空欄の場合、登録できないこと' do
         user.password_confirmation = ''
         expect(user).to be_invalid
@@ -65,14 +65,14 @@ RSpec.describe User, type: :model do
       end
     end
 
-    context "phoneカラム" do
+    context 'phoneカラム' do
       it '空欄の場合、登録できないこと' do
         user.phone = ''
         expect(user).to be_invalid
       end
     end
 
-    context "birthdateカラム" do
+    context 'birthdateカラム' do
       it '空欄の場合、登録できないこと' do
         user.birthdate = ''
         expect(user).to be_invalid

@@ -6,12 +6,12 @@ RSpec.describe 'Users', type: :request do
   describe 'サインアップ:POST devise/registrations#create' do
     let(:user) { create(:user) }
     let(:user_params) { attributes_for(:user) }
-    let(:invalid_user_params) { attributes_for(:user, name:'') }
+    let(:invalid_user_params) { attributes_for(:user, name: '') }
 
-    context '正常系：パラメータ正常' do
+    context '正常系：パラメータ正常のとき' do
       it 'requestが成功すること' do
         post user_registration_path, params: { user: user_params }
-        expect(response).to have_http_status(303)
+        expect(response).to have_http_status(:see_other)
       end
 
       it '認証メールが送信されること' do
@@ -31,10 +31,10 @@ RSpec.describe 'Users', type: :request do
       end
     end
 
-    context '異常系：パラメータ不正' do
+    context '異常系：パラメータ不正のとき' do
       it 'requestが成功すること' do
         post user_registration_path, params: { user: user_params }
-        expect(response).to have_http_status(303)
+        expect(response).to have_http_status(:see_other)
       end
 
       it '認証メールが送信されること' do
@@ -45,7 +45,7 @@ RSpec.describe 'Users', type: :request do
       it 'ユーザcreateに失敗すること' do
         expect do
           post user_registration_path, params: { user: invalid_user_params }
-        end.to_not change(User, :count)
+        end.not_to change(User, :count)
       end
 
       it 'responseにエラー文が含まれること' do
@@ -56,46 +56,47 @@ RSpec.describe 'Users', type: :request do
   end
 
   describe 'ログイン:POST devise/sessions#create' do
-    let(:user) { create(:user) }
+    context '正常系：パラメータ正常のとき' do
+      let(:user) { create(:user) }
+      let(:user_params) { { email: user.email, password: user.password } }
 
-    context '正常系：パラメータ正常' do
       before do
         user.confirm
-        @user_params =  { email: user.email, password: user.password }
       end
 
       it 'requestが成功すること' do
-        post user_session_path, params: { user: @user_params }
-        expect(response).to have_http_status(303)
+        post user_session_path, params: { user: user_params }
+        expect(response).to have_http_status(:see_other)
       end
 
       it 'ログイン状態になること' do
-        post user_session_path, params: { user: @user_params }
+        post user_session_path, params: { user: user_params }
         expect(controller.user_signed_in?).to be true
       end
 
       it 'root_pathにリダイレクトされること' do
-        post user_session_path, params: { user: @user_params }
+        post user_session_path, params: { user: user_params }
         expect(response).to redirect_to root_url
       end
     end
 
-    context '異常系：パラメータ不正' do
+    context '異常系：パラメータ不正のとき' do
+      let(:user) { create(:user) }
+      let(:invalid_user_params) { { email: user.email, password: 'invalid' } }
+
       before do
         user.confirm
-        @invalid_user_params =  { email: user.email, password: 'invalid' }
       end
 
       it 'requestが失敗すること' do
-        post user_session_path, params: { user: @invalid_user_params }
-        expect(response).to have_http_status(422)
+        post user_session_path, params: { user: invalid_user_params }
+        expect(response).to have_http_status(:unprocessable_entity)
       end
 
       it 'ログイン状態にならないこと' do
-        post user_session_path, params: { user: @invalid_user_params }
+        post user_session_path, params: { user: invalid_user_params }
         expect(controller.user_signed_in?).to be false
       end
     end
   end
-
 end

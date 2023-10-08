@@ -26,3 +26,7 @@ Hc/RailsSpecificActionName:
 Rails/LexicallyScopedActionFilter:
   Exclude:
     - app/controllers/users/registrations_controller.rb
+RSpec/ContextWording:
+  AllowedPatterns:
+    - とき$
+    - カラム$
