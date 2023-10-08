@@ -44,6 +44,12 @@ RSpec.describe '`Posts', type: :request do
         expect(response).to have_http_status(:ok)
       end
 
+      it 'ツイートcreateに失敗すること' do
+        expect do
+          post posts_path, params: { post: post_params }
+        end.not_to change(Post, :count)
+      end
+
       it 'responseにエラー文が含まれること' do
         post posts_path, params: { post: post_params }
         expect(response.body).to include 'エラーが発生したため 投稿 は保存されませんでした。'
