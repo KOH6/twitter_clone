@@ -4,10 +4,10 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   describe 'バリデーション' do
-    let(:user) { FactoryBot.create(:user) }
+    let(:user) { create(:user) }
 
     context '正常系' do
-      it 'name,user_name,password,phone,birthdate入力時は、登録できること' do
+      it 'name,user_name,password,phone,birthdateが入力されている場合、登録できること' do
         user = build(:user)
         expect(user).to be_valid
       end
@@ -70,17 +70,17 @@ RSpec.describe User, type: :model do
         user.phone = ''
         expect(user).to be_invalid
       end
+    end
 
-      context "birthdateカラム" do
-        it '空欄の場合、登録できないこと' do
-          user.birthdate = ''
-          expect(user).to be_invalid
-        end
+    context "birthdateカラム" do
+      it '空欄の場合、登録できないこと' do
+        user.birthdate = ''
+        expect(user).to be_invalid
+      end
 
-        it '日付のフォーマットに一致しない場合、登録できないこと' do
-          user.birthdate = '2000'
-          expect(user).to be_invalid
-        end
+      it '日付のフォーマットに一致しない場合、登録できないこと' do
+        user.birthdate = '2000'
+        expect(user).to be_invalid
       end
     end
   end
