@@ -30,3 +30,12 @@ RSpec/ContextWording:
   AllowedPatterns:
     - とき$
     - カラム$
+RSpec/ExampleLength:
+  Exclude:
+    - spec/systems/users_spec.rb
+RSpec/MultipleExpectations:
+  Exclude:
+    - spec/systems/users_spec.rb
+RSpec/Capybara/FeatureMethods:
+  Exclude:
+    - spec/systems/users_spec.rb
