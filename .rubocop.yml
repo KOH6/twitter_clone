@@ -32,10 +32,10 @@ RSpec/ContextWording:
     - カラム$
 RSpec/ExampleLength:
   Exclude:
-    - spec/systems/users_spec.rb
+    - spec/systems/*
 RSpec/MultipleExpectations:
   Exclude:
-    - spec/systems/users_spec.rb
+    - spec/systems/*
 RSpec/Capybara/FeatureMethods:
   Exclude:
-    - spec/systems/users_spec.rb
+    - spec/systems/*

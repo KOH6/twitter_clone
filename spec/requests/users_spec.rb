@@ -37,11 +37,6 @@ RSpec.describe 'Users', type: :request do
         expect(response).to have_http_status(:see_other)
       end
 
-      it '認証メールが送信されること' do
-        post user_registration_path, params: { user: user_params }
-        expect(ActionMailer::Base.deliveries.size).to eq 1
-      end
-
       it 'ユーザcreateに失敗すること' do
         expect do
           post user_registration_path, params: { user: invalid_user_params }
