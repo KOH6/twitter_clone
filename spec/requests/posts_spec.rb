@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe '`Posts', type: :request do
+RSpec.describe 'Posts', type: :request do
   describe 'ツイート:POST posts#create' do
     context '正常系：パラメータ正常のとき' do
       let(:user) { create(:user) }
