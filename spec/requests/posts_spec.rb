@@ -21,7 +21,7 @@ RSpec.describe 'Posts', type: :request do
       it 'ツイートcreateに成功すること' do
         expect do
           post posts_path, params: { post: post_params }, headers: { HTTP_REFERER: root_url }
-        end.to change(Post, :count).by 1
+        end.to change(user.posts, :count).by 1
       end
 
       it 'root_pathにリダイレクトされること' do
@@ -47,7 +47,7 @@ RSpec.describe 'Posts', type: :request do
       it 'ツイートcreateに失敗すること' do
         expect do
           post posts_path, params: { post: post_params }
-        end.not_to change(Post, :count)
+        end.not_to change(user.posts, :count)
       end
 
       it 'responseにエラー文が含まれること' do
