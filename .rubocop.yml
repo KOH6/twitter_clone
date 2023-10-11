@@ -26,3 +26,16 @@ Hc/RailsSpecificActionName:
 Rails/LexicallyScopedActionFilter:
   Exclude:
     - app/controllers/users/registrations_controller.rb
+RSpec/ContextWording:
+  AllowedPatterns:
+    - とき$
+    - カラム$
+RSpec/ExampleLength:
+  Exclude:
+    - spec/systems/*
+RSpec/MultipleExpectations:
+  Exclude:
+    - spec/systems/*
+RSpec/Capybara/FeatureMethods:
+  Exclude:
+    - spec/systems/*
