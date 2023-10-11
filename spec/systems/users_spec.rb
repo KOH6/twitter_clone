@@ -42,6 +42,7 @@ RSpec.describe 'Users', type: :system do
           fill_in '電話番号', with: user.phone
           fill_in '生年月日', with: user.birthdate
           fill_in 'パスワード', with: user.password
+          fill_in 'パスワード（確認用）', with: user.password
           click_button '新規登録'
         end.to change(User, :count).by 0
 
